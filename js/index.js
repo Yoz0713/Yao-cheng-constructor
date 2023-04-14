@@ -220,7 +220,6 @@ window.onload = function () {
                 trigger: ".second-page",
                 start: "top 90%",
                 scrub: 1,
-                markers: true,
                 end: `+=${window.innerHeight}`,
                 toggleActions: "play none none reverse"
             }

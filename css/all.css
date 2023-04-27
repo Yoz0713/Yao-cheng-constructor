@@ -206,6 +206,10 @@
   left: 0;
   width: 100%;
   height: 100%;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  opacity: 0.99;
+  backface-visibility: hidden;
 }
 .index .first-page .canvas-container canvas:first-child {
   display: none;

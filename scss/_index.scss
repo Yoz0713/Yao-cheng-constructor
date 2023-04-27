@@ -1,5 +1,6 @@
 .index {
     width: 100%;
+    overflow: hidden;
 
     //config
     .paraBox {
@@ -13,28 +14,7 @@
             text-align: center;
         }
 
-        h2 {
-            position: relative;
-            font-size: var(--ch_l_text);
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 400;
 
-
-            &> :nth-child(1) {
-                font-size: pxConvertor(96);
-                color: #6b8786;
-                font-weight: 400;
-            }
-
-
-
-            span {
-                display: inline-block;
-                font-family: 'Cormorant Garamond', serif;
-
-            }
-
-        }
 
         h4 {
             position: relative;
@@ -58,12 +38,8 @@
         }
 
         p {
-            font-size: var(--ch_s_text);
-            color: #333333;
             width: pxConvertor(575.86);
-            letter-spacing: 0.1em;
-            line-height: 2.25;
-            font-family: "Microsoft JhengHei", serif;
+            @include para();
 
             span {
                 font-family: "Microsoft JhengHei", serif;
@@ -92,6 +68,14 @@
         width: 100%;
         height: 105vh;
         z-index: 20;
+
+        @include tablet() {
+            height: 150vw;
+        }
+
+        @include mobile() {
+            height: 220vw;
+        }
 
         .canvas-container {
             width: 100%;

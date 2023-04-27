@@ -1,0 +1,100 @@
+.newsInner {
+    width: 100%;
+    padding-top: 14vw;
+
+    .first-page {
+        width: 56.2%;
+        margin: 0 auto 8.5vw;
+
+        .imgBox {
+            width: 100%;
+
+
+            img {
+                width: 100%;
+                height: pxConvertor(694);
+                object-fit: cover;
+            }
+        }
+
+        .titleBox {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin: 3.5vw 0 1vw;
+
+            .date {
+                font-size: pxConvertor(20);
+                font-family: 'Cormorant Garamond', serif;
+                letter-spacing: 0.1em;
+                color: #333333;
+                opacity: 0.8;
+                font-weight: 600;
+            }
+
+            .title {
+                font-size: var(--ch_m_text);
+                font-weight: 800;
+                letter-spacing: 0.1em;
+                margin: 0.3vw 0 1.5vw;
+                color: #333333;
+            }
+        }
+
+        .paraBox {
+            p {
+                @include para();
+                opacity: 0.6;
+
+                &:not(:last-child) {
+                    margin-bottom: 1.6vw;
+                }
+            }
+        }
+
+        .gradient-square {
+
+            .box {
+                &:nth-child(1) {
+                    width: pxConvertor(122);
+                    height: pxConvertor(235);
+                    top: pxConvertor(364);
+                    left: pxConvertor(10);
+
+
+                }
+
+                &:nth-child(2) {
+                    width: pxConvertor(237.25);
+                    height: pxConvertor(457);
+                    top: pxConvertor(211);
+                    left: pxConvertor(76);
+                }
+
+
+
+                &:nth-child(3) {
+                    width: pxConvertor(114.33);
+                    height: pxConvertor(220.23);
+                    top: pxConvertor(661);
+                    left: pxConvertor(1716);
+                }
+
+                &:nth-child(4) {
+                    width: pxConvertor(90.33);
+                    height: pxConvertor(174);
+                    top: 57vw;
+                    left: pxConvertor(0);
+                }
+
+                &:nth-child(5) {
+                    width: pxConvertor(90.33);
+                    height: pxConvertor(174);
+                    top: 59.5vw;
+                    left: pxConvertor(57);
+                }
+            }
+        }
+    }
+}

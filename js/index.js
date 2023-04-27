@@ -7,13 +7,17 @@ window.onload = function () {
     //拆字
     splitText(".first-page h2")
     splitText(".first-page .banner-paraBox > :nth-child(2)")
-    splitText(".second-page .paraBox h2")
-    splitText(".third-page .paraBox h2")
-    splitText(".forth-page .paraBox h2")
+
     //首頁切割輪播 imgRatio = 20 : 11
-    const images = ['./img/webp/first-page-banner2.webp', './img/webp/first-page-banner3.webp', './img/webp/first-page-banner4.webp', './img/webp/first-page-banner5.webp', './img/webp/first-page-banner6.webp'];
+    const images = ['./img/index/webp/first-page-banner2.webp', './img/index/webp/first-page-banner3.webp', './img/index/webp/first-page-banner4.webp', './img/index/webp/first-page-banner5.webp', './img/index/webp/first-page-banner6.webp'];
     let index = 0;
     let isAnimating = false;
+    //第一cut方塊切割數量 = blocksNum.x * blocksNum.y
+    const gap = 3;
+    const blocksNum = {
+        x: window.innerWidth > 820 ? 10 : 6,
+        y: 4
+    }
     function loadNextImage(flag = true) {
         if (isAnimating) {
             return;
@@ -24,7 +28,7 @@ window.onload = function () {
         // 獲取下一張圖片的url
         let imageUrl
         if (flag) {
-            imageUrl = './img/webp/first-page-banner1.webp';
+            imageUrl = './img/index/webp/first-page-banner1.webp';
         } else {
             imageUrl = images[index];
         }
@@ -47,15 +51,15 @@ window.onload = function () {
 
             // 繪制圖像
             ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-            const gap = 3;
-            let standardHeight = (canvas.height - gap * 3) / 4
-            let standardWidth = (canvas.width - gap * 9) / 10
-            let longHeight = (canvas.height - gap * 3 - standardHeight) / 2
+
+            let standardHeight = (canvas.height - gap * (blocksNum.y - 1)) / blocksNum.y
+            let standardWidth = (canvas.width - gap * (blocksNum.x - 1)) / blocksNum.x
+            let longHeight = (canvas.height - gap * (blocksNum.y - 1) - standardHeight) / (blocksNum.y - 2)
 
             // // 創建10*5個canvas元素
 
-            for (let i = 0; i < 11; i++) {
-                for (let j = 0; j < 4; j++) {
+            for (let i = 0; i < blocksNum.x + 1; i++) {
+                for (let j = 0; j < blocksNum.y; j++) {
                     // 創建canvas元素
                     const blockCanvas = document.createElement('canvas');
                     let imageData;
@@ -176,8 +180,11 @@ window.onload = function () {
             //     }
             // }
             window.onresize = () => {
-                window.location.reload();
-                window.scrollTo(0, 0)
+                if (window.innerWidth > 820) {
+                    window.location.reload();
+                    window.scrollTo(0, 0)
+                }
+
             }
         };
     }
@@ -218,7 +225,7 @@ window.onload = function () {
         let bannerOut = gsap.timeline({
             scrollTrigger: {
                 trigger: ".second-page",
-                start: "top 90%",
+                start: "top 80%",
                 scrub: 1,
                 end: `+=${window.innerHeight}`,
                 toggleActions: "play none none reverse"
@@ -235,19 +242,34 @@ window.onload = function () {
         }).to(canvases1, {
             y: (index, target) => {
                 let yDistance;
-                if (index == 5) {
-                    yDistance = window.innerHeight * 2
-                } else if (index == 4 || index == 6) {
-                    yDistance = window.innerHeight * 1.8
-                } else if (index == 3 || index == 7) {
-                    yDistance = window.innerHeight * 1.6
-                } else if (index == 2 || index == 8) {
-                    yDistance = window.innerHeight * 1.4
-                } else if (index == 1 || index == 9) {
-                    yDistance = window.innerHeight * 1.2
-                } else if (index == 0 || index == 10) {
-                    yDistance = window.innerHeight * 1
+                if (index >= Math.round(blocksNum.x / 2)) {
+                    if (index == Math.round(blocksNum.x / 2)) {
+                        yDistance = window.innerHeight * 2
+                    } else if (index % Math.round(blocksNum.x / 2) == 1) {
+                        yDistance = window.innerHeight * 1.8
+                    } else if (index % Math.round(blocksNum.x / 2) == 2) {
+                        yDistance = window.innerHeight * 1.6
+                    } else if (index % Math.round(blocksNum.x / 2) == 3) {
+                        yDistance = window.innerHeight * 1.4
+                    } else if (index % Math.round(blocksNum.x / 2) == 4) {
+                        yDistance = window.innerHeight * 1.2
+                    } else if (index % Math.round(blocksNum.x / 2) == 0) {
+                        yDistance = window.innerHeight * 1
+                    }
+                } else {
+                    if (index % Math.round(blocksNum.x / 2) == 4) {
+                        yDistance = window.innerHeight * 1.8
+                    } else if (index % Math.round(blocksNum.x / 2) == 3) {
+                        yDistance = window.innerHeight * 1.6
+                    } else if (index % Math.round(blocksNum.x / 2) == 2) {
+                        yDistance = window.innerHeight * 1.4
+                    } else if (index % Math.round(blocksNum.x / 2) == 1) {
+                        yDistance = window.innerHeight * 1.2
+                    } else if (index % Math.round(blocksNum.x / 2) == 0) {
+                        yDistance = window.innerHeight * 1
+                    }
                 }
+
                 return `-${yDistance}px`;
             },
             duration: 1
@@ -268,37 +290,65 @@ window.onload = function () {
         }, {
             x: (index, target) => {
                 let xDistance;
-                let side = index < 5 ? -1 : 1
-                if (index == 5) {
-                    xDistance = 0
-                } else if (index == 4 || index == 6) {
-                    xDistance = side * 35
-                } else if (index == 3 || index == 7) {
-                    xDistance = side * 70
-                } else if (index == 2 || index == 8) {
-                    xDistance = side * 105
-                } else if (index == 1 || index == 9) {
-                    xDistance = side * 140
-                } else if (index == 0 || index == 10) {
-                    xDistance = side * 175
+                let side = index < Math.round(blocksNum.x / 2) ? -1 : 1
+                if (index >= Math.round(blocksNum.x / 2)) {
+                    if (index == Math.round(blocksNum.x / 2)) {
+                        xDistance = 0
+                    } else if (index % Math.round(blocksNum.x / 2) == 1) {
+                        xDistance = side * 35
+                    } else if (index % Math.round(blocksNum.x / 2) == 2) {
+                        xDistance = side * 70
+                    } else if (index % Math.round(blocksNum.x / 2) == 3) {
+                        xDistance = side * 105
+                    } else if (index % Math.round(blocksNum.x / 2) == 4) {
+                        xDistance = side * 140
+                    } else if (index % Math.round(blocksNum.x / 2) == 0) {
+                        xDistance = side * 175
+                    }
+                } else {
+                    if (index % Math.round(blocksNum.x / 2) == 4) {
+                        xDistance = side * 35
+                    } else if (index % Math.round(blocksNum.x / 2) == 3) {
+                        xDistance = side * 70
+                    } else if (index % Math.round(blocksNum.x / 2) == 2) {
+                        xDistance = side * 105
+                    } else if (index % Math.round(blocksNum.x / 2) == 1) {
+                        xDistance = side * 140
+                    } else if (index % Math.round(blocksNum.x / 2) == 0) {
+                        xDistance = side * 175
+                    }
                 }
                 return `${xDistance}px`;
             },
         }, "<").to(canvases3, {
             y: (index, target) => {
                 let yDistance;
-                if (index == 5) {
-                    yDistance = window.innerHeight * 1.5
-                } else if (index == 4 || index == 6) {
-                    yDistance = window.innerHeight * 1.3
-                } else if (index == 3 || index == 7) {
-                    yDistance = window.innerHeight * 1.2
-                } else if (index == 2 || index == 8) {
-                    yDistance = window.innerHeight * 1.1
-                } else if (index == 1 || index == 9) {
-                    yDistance = window.innerHeight * 1
-                } else if (index == 0 || index == 10) {
-                    yDistance = window.innerHeight * 0.9
+                if (index >= Math.round(blocksNum.x / 2)) {
+                    if (index == Math.round(blocksNum.x / 2)) {
+                        yDistance = window.innerHeight * 1.5
+                    } else if (index % Math.round(blocksNum.x / 2) == 1) {
+                        yDistance = window.innerHeight * 1.3
+                    } else if (index % Math.round(blocksNum.x / 2) == 2) {
+                        yDistance = window.innerHeight * 1.2
+                    } else if (index % Math.round(blocksNum.x / 2) == 3) {
+                        yDistance = window.innerHeight * 1.1
+                    } else if (index % Math.round(blocksNum.x / 2) == 4) {
+                        yDistance = window.innerHeight * 1
+                    } else if (index % Math.round(blocksNum.x / 2) == 0) {
+                        yDistance = window.innerHeight * 0.9
+                    }
+                } else {
+                    if (index % Math.round(blocksNum.x / 2) == 4) {
+                        yDistance = window.innerHeight * 1.3
+                    } else if (index % Math.round(blocksNum.x / 2) == 3) {
+                        yDistance = window.innerHeight * 1.2
+                    } else if (index % Math.round(blocksNum.x / 2) == 2) {
+                        yDistance = window.innerHeight * 1.1
+                    } else if (index % Math.round(blocksNum.x / 2) == 1) {
+                        yDistance = window.innerHeight * 1
+                    } else if (index % Math.round(blocksNum.x / 2) == 0) {
+                        yDistance = window.innerHeight * 0.9
+                    }
                 }
                 return `-${yDistance}px`;
             },
@@ -308,38 +358,68 @@ window.onload = function () {
         }, {
             x: (index, target) => {
                 let xDistance;
-                let side = index < 5 ? -1 : 1
-                if (index == 5) {
-                    xDistance = 0
-                } else if (index == 4 || index == 6) {
-                    xDistance = side * window.innerWidth / 35
-                } else if (index == 3 || index == 7) {
-                    xDistance = side * window.innerWidth / 35 * 2
-                } else if (index == 2 || index == 8) {
-                    xDistance = side * window.innerWidth / 35 * 3
-                } else if (index == 1 || index == 9) {
-                    xDistance = side * window.innerWidth / 35 * 4
-                } else if (index == 0 || index == 10) {
-                    xDistance = side * window.innerWidth / 35 * 5
+                let side = index < Math.round(blocksNum.x / 2) ? -1 : 1
+                if (index >= Math.round(blocksNum.x / 2)) {
+                    if (index == Math.round(blocksNum.x / 2)) {
+                        xDistance = 0
+                    } else if (index % Math.round(blocksNum.x / 2) == 1) {
+                        xDistance = side * window.innerWidth / 35
+                    } else if (index % Math.round(blocksNum.x / 2) == 2) {
+                        xDistance = side * window.innerWidth / 35 * 2
+                    } else if (index % Math.round(blocksNum.x / 2) == 3) {
+                        xDistance = side * window.innerWidth / 35 * 3
+                    } else if (index % Math.round(blocksNum.x / 2) == 4) {
+                        xDistance = side * window.innerWidth / 35 * 4
+                    } else if (index % Math.round(blocksNum.x / 2) == 0) {
+                        xDistance = side * window.innerWidth / 35 * 5
+                    }
+                } else {
+                    if (index % Math.round(blocksNum.x / 2) == 4) {
+                        xDistance = side * window.innerWidth / 35
+                    } else if (index % Math.round(blocksNum.x / 2) == 3) {
+                        xDistance = side * window.innerWidth / 35 * 2
+                    } else if (index % Math.round(blocksNum.x / 2) == 2) {
+                        xDistance = side * window.innerWidth / 35 * 3
+                    } else if (index % Math.round(blocksNum.x / 2) == 1) {
+                        xDistance = side * window.innerWidth / 35 * 4
+                    } else if (index % Math.round(blocksNum.x / 2) == 0) {
+                        xDistance = side * window.innerWidth / 35 * 5
+                    }
                 }
+
                 return `${xDistance}px`;
             },
         }, "<").to(canvases4, {
             y: (index, target) => {
                 let yDistance;
-                if (index == 5) {
-                    yDistance = window.innerHeight * 1.5
-                } else if (index == 4 || index == 6) {
-                    yDistance = window.innerHeight * 1.4
-                } else if (index == 3 || index == 7) {
-                    yDistance = window.innerHeight * 1.2
-                } else if (index == 2 || index == 8) {
-                    yDistance = window.innerHeight * 0.9
-                } else if (index == 1 || index == 9) {
-                    yDistance = window.innerHeight * 0.6
-                } else if (index == 0 || index == 10) {
-                    yDistance = window.innerHeight * 0.4
+                if (index >= Math.round(blocksNum.x / 2)) {
+                    if (index == Math.round(blocksNum.x / 2)) {
+                        yDistance = window.innerHeight * 1.5
+                    } else if (index % Math.round(blocksNum.x / 2) == 1) {
+                        yDistance = window.innerHeight * 1.4
+                    } else if (index % Math.round(blocksNum.x / 2) == 2) {
+                        yDistance = window.innerHeight * 1.2
+                    } else if (index % Math.round(blocksNum.x / 2) == 3) {
+                        yDistance = window.innerHeight * 0.9
+                    } else if (index % Math.round(blocksNum.x / 2) == 4) {
+                        yDistance = window.innerHeight * 0.6
+                    } else if (index % Math.round(blocksNum.x / 2) == 0) {
+                        yDistance = window.innerHeight * 0.4
+                    }
+                } else {
+                    if (index % Math.round(blocksNum.x / 2) == 4) {
+                        yDistance = window.innerHeight * 1.4
+                    } else if (index % Math.round(blocksNum.x / 2) == 3) {
+                        yDistance = window.innerHeight * 1.2
+                    } else if (index % Math.round(blocksNum.x / 2) == 2) {
+                        yDistance = window.innerHeight * 0.9
+                    } else if (index % Math.round(blocksNum.x / 2) == 1) {
+                        yDistance = window.innerHeight * 0.6
+                    } else if (index % Math.round(blocksNum.x / 2) == 0) {
+                        yDistance = window.innerHeight * 0.4
+                    }
                 }
+
                 return `-${yDistance}px`;
             },
             duration: 1
@@ -348,20 +428,35 @@ window.onload = function () {
         }, {
             x: (index, target) => {
                 let xDistance;
-                let side = index < 5 ? -1 : 1
-                if (index == 5) {
-                    xDistance = 0
-                } else if (index == 4 || index == 6) {
-                    xDistance = side * window.innerWidth / 30
-                } else if (index == 3 || index == 7) {
-                    xDistance = side * window.innerWidth / 30 * 2
-                } else if (index == 2 || index == 8) {
-                    xDistance = side * window.innerWidth / 30 * 3
-                } else if (index == 1 || index == 9) {
-                    xDistance = side * window.innerWidth / 30 * 4
-                } else if (index == 0 || index == 10) {
-                    xDistance = side * window.innerWidth / 30 * 5
+                let side = index < Math.round(blocksNum.x / 2) ? -1 : 1
+                if (index >= Math.round(blocksNum.x / 2)) {
+                    if (index == Math.round(blocksNum.x / 2)) {
+                        xDistance = 0
+                    } else if (index % Math.round(blocksNum.x / 2) == 1) {
+                        xDistance = side * window.innerWidth / 30
+                    } else if (index % Math.round(blocksNum.x / 2) == 2) {
+                        xDistance = side * window.innerWidth / 30 * 2
+                    } else if (index % Math.round(blocksNum.x / 2) == 3) {
+                        xDistance = side * window.innerWidth / 30 * 3
+                    } else if (index % Math.round(blocksNum.x / 2) == 4) {
+                        xDistance = side * window.innerWidth / 30 * 4
+                    } else if (index % Math.round(blocksNum.x / 2) == 0) {
+                        xDistance = side * window.innerWidth / 30 * 5
+                    }
+                } else {
+                    if (index % Math.round(blocksNum.x / 2) == 4) {
+                        xDistance = side * window.innerWidth / 30
+                    } else if (index % Math.round(blocksNum.x / 2) == 3) {
+                        xDistance = side * window.innerWidth / 30 * 2
+                    } else if (index % Math.round(blocksNum.x / 2) == 2) {
+                        xDistance = side * window.innerWidth / 30 * 3
+                    } else if (index % Math.round(blocksNum.x / 2) == 1) {
+                        xDistance = side * window.innerWidth / 30 * 4
+                    } else if (index % Math.round(blocksNum.x / 2) == 0) {
+                        xDistance = side * window.innerWidth / 30 * 5
+                    }
                 }
+
                 return `${xDistance}px`;
             },
         }, "<").from(".second-page", {
@@ -371,25 +466,7 @@ window.onload = function () {
     }
 
 
-    function gradientSquareAnimation() {
-        const square = document.querySelectorAll(".gradient-square .box")
-        square.forEach((item, i) => {
-            this[`box${i}`] = gsap.timeline({
-                scrollTrigger: {
-                    trigger: item,
-                    start: "top 90%",
-                }
-            })
-            this[`box${i}`].to(item, {
-                backgroundSize: "100% 100%",
-                delay: i == 0 ? 0.5 : 0,
-                duration: 2,
-                opacity: 0.4
-            })
-        })
-    }
 
-    gradientSquareAnimation()
 
     //第三cut輪播
     function carosule() {

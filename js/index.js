@@ -46,7 +46,6 @@ window.onload = function () {
             const canvas = document.getElementById('canvas');
             const ctx = canvas.getContext('2d');
             const canvasContainer = document.querySelector('.canvas-container')
-            const imageAspectRatio = image.width / image.height;
             canvas.width = canvasContainer.clientWidth;
             canvas.height = canvasContainer.clientHeight;
 
@@ -95,7 +94,7 @@ window.onload = function () {
                                 if (i == 0) {
                                     imageData = ctx.getImageData(0, standardHeight + gap, blockCanvas.width / 2, blockCanvas.height);
                                 } else if (i == 2 || i == 3 || i == 4) {
-                                    imageData = ctx.getImageData((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap) - gap, standardHeight + gap, standardWidth, longHeight);
+                                    imageData = ctx.getImageData((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap) - gap * (i - 1), standardHeight + gap, standardWidth, longHeight);
                                 } else {
                                     imageData = ctx.getImageData((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap), standardHeight + gap, standardWidth, longHeight);
                                 }
@@ -254,11 +253,12 @@ window.onload = function () {
         })
     }
     function bannerOutAnimation() {
+
         let bannerOut = gsap.timeline({
             scrollTrigger: {
                 trigger: ".second-page",
                 start: "top 80%",
-                scrub: 1,
+                scrub: window.innerWidth > 820 ? 1 : null,
                 end: `+=${window.innerHeight}`,
                 toggleActions: "play none none reverse"
             }

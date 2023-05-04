@@ -258,7 +258,7 @@ window.onload = function () {
             scrollTrigger: {
                 trigger: ".second-page",
                 start: "top 80%",
-                scrub: window.innerWidth > 820 ? 1 : null,
+                scrub: 1,
                 end: `+=${window.innerHeight}`,
                 toggleActions: "play none none reverse"
             }

@@ -9,13 +9,13 @@ window.onload = function () {
     splitText(".first-page .banner-paraBox > :nth-child(2)")
 
     //首頁切割輪播 imgRatio = 20 : 11
-    const images = ['./img/index/webp/first-page-banner2.webp', './img/index/webp/first-page-banner3.webp', './img/index/webp/first-page-banner4.webp', './img/index/webp/first-page-banner5.webp', './img/index/webp/first-page-banner6.webp'];
+    const images = ['./img/index/webp/first-page-banner1.webp', './img/index/jpg/banner-bg2.jpg', './img/index/jpg/banner-bg3.jpg', './img/index/jpg/banner-bg4.jpg'];
     let index = 0;
     let isAnimating = false;
     //第一cut方塊切割數量 = blocksNum.x * blocksNum.y
-    const gap = 3;
+    const gap = 6;
     const blocksNum = {
-        x: window.innerWidth > 820 ? 10 : 6,
+        x: window.innerWidth > 820 ? 10 : 3,
         y: 4
     }
     function loadNextImage(flag = true) {
@@ -28,7 +28,9 @@ window.onload = function () {
         // 獲取下一張圖片的url
         let imageUrl
         if (flag) {
-            imageUrl = './img/index/webp/first-page-banner1.webp';
+            let random = Math.floor(Math.random() * images.length);
+
+            imageUrl = images[3];
         } else {
             imageUrl = images[index];
         }
@@ -44,7 +46,7 @@ window.onload = function () {
             const canvas = document.getElementById('canvas');
             const ctx = canvas.getContext('2d');
             const canvasContainer = document.querySelector('.canvas-container')
-
+            const imageAspectRatio = image.width / image.height;
             canvas.width = canvasContainer.clientWidth;
             canvas.height = canvasContainer.clientHeight;
 
@@ -54,7 +56,8 @@ window.onload = function () {
 
             let standardHeight = (canvas.height - gap * (blocksNum.y - 1)) / blocksNum.y
             let standardWidth = (canvas.width - gap * (blocksNum.x - 1)) / blocksNum.x
-            let longHeight = (canvas.height - gap * (blocksNum.y - 1) - standardHeight) / (blocksNum.y - 2)
+            let longHeight = (canvas.height - gap * (blocksNum.y - 1) - standardHeight) / (blocksNum.y - 2);
+            // const longHeight = (canvas.height - gap * (blocksNum.y - 2) - standardHeight) / 2;
 
             // // 創建10*5個canvas元素
 
@@ -72,7 +75,7 @@ window.onload = function () {
                         // 設置canvas的位置和大小
                         blockCanvas.style.top = j == 1 ? standardHeight + gap + 'px' : standardHeight + longHeight * (j - 1) + gap * j + 'px';
                         blockCanvas.style.left = i == 0 ? '0px' : (i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap) + 'px';
-                        blockCanvas.style.width = i < 6 || i > 8 ? standardWidth + "px" : standardWidth + gap * 0.95 + "px";
+                        blockCanvas.style.width = window.innerWidth > 820 ? i < 6 || i > 8 ? standardWidth + "px" : standardWidth + gap * 0.99 + "px" : i < 1 || i > 4 ? standardWidth + "px" : standardWidth + gap * 0.95 + "px";
                         blockCanvas.style.height = longHeight + 'px';
                         // 將canvas元素添加到DOM中
                         document.querySelector('.canvas-container').appendChild(blockCanvas);
@@ -80,29 +83,46 @@ window.onload = function () {
 
                         // 獲取區塊的像素數據
                         if (j == 1) {
-                            if (i == 0) {
-                                imageData = ctx.getImageData(0, standardHeight + gap, blockCanvas.width / 2, blockCanvas.height);
-                            } else if (i == 6) {
-                                imageData = ctx.getImageData((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap), standardHeight + gap, standardWidth * 4, longHeight);
+                            if (window.innerWidth > 820) {
+                                if (i == 0) {
+                                    imageData = ctx.getImageData(0, standardHeight + gap, blockCanvas.width / 2, blockCanvas.height);
+                                } else if (i == 6) {
+                                    imageData = ctx.getImageData((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap), standardHeight + gap, standardWidth, longHeight);
+                                } else {
+                                    imageData = ctx.getImageData((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap), standardHeight + gap, standardWidth, longHeight);
+                                }
                             } else {
-                                imageData = ctx.getImageData((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap), standardHeight + gap, standardWidth, longHeight);
+                                if (i == 0) {
+                                    imageData = ctx.getImageData(0, standardHeight + gap, blockCanvas.width / 2, blockCanvas.height);
+                                } else if (i == 2 || i == 3 || i == 4) {
+                                    imageData = ctx.getImageData((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap) - gap, standardHeight + gap, standardWidth, longHeight);
+                                } else {
+                                    imageData = ctx.getImageData((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap), standardHeight + gap, standardWidth, longHeight);
+                                }
                             }
+
                         } else {
                             if (i == 0) {
                                 imageData = ctx.getImageData(0, standardHeight + longHeight + gap * 2, blockCanvas.width / 2, longHeight);
                             } else {
-                                imageData = ctx.getImageData((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap), standardHeight + longHeight + gap * 2, standardWidth, longHeight);
+                                imageData = ctx.getImageData((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap), standardHeight + longHeight + gap * 3, standardWidth, longHeight);
                             }
                         }
 
 
                     } else {
-                        blockCanvas.height = standardHeight;
+                        if (j == 0) {
+                            blockCanvas.height = standardHeight;
+                        } else {
+                            blockCanvas.height = longHeight;
+                        }
+
                         // 設置canvas的位置和大小
                         blockCanvas.style.top = j == 0 ? 0 : standardHeight + longHeight * (j - 1) + gap * j + 'px';
                         blockCanvas.style.left = i * standardWidth + i * gap + 'px';
                         blockCanvas.style.width = standardWidth + 'px';
                         blockCanvas.style.height = j == 0 ? standardHeight + 'px' : longHeight + 'px';
+
                         // 將canvas元素添加到DOM中
                         document.querySelector('.canvas-container').appendChild(blockCanvas);
 
@@ -110,7 +130,7 @@ window.onload = function () {
                         if (j == 0) {
                             imageData = ctx.getImageData(i * standardWidth + i * gap, j * standardHeight + j * gap, standardWidth, standardHeight);
                         } else {
-                            imageData = ctx.getImageData(i * standardWidth + i * gap, standardHeight + longHeight + j * gap, standardWidth, longHeight);
+                            imageData = ctx.getImageData(i * standardWidth + i * gap, standardHeight + longHeight + gap * j, standardWidth, longHeight);
                         }
 
                     }
@@ -199,17 +219,29 @@ window.onload = function () {
             ease: "power2.inOut",
             transform: "rotateX(-130deg) rotateY(-100deg) rotateZ(-160deg)",
             duration: 1.2
-        }).from(".first-page h2 span", {
+        }).to(".first-page .banner-paraBox ", {
+            opacity: 1,
+            duration: 0.3,
+        }, "<+1.8").from(".first-page h2 span", {
             x: 80,
-            opacity: 0,
             duration: 0.6,
             stagger: 0.012
-        }, "<+2.4").from(".first-page p span", {
-            x: 80,
-            opacity: 0,
+        }, "<+0.6").to(".first-page h2 span", {
+            opacity: 1,
             duration: 0.6,
             stagger: 0.012
-        }, "<+0.6").from(".first-page .box .line", {
+        }, "<").from(".first-page p span", {
+            x: 80,
+            duration: 0.6,
+            stagger: 0.012
+        }, "<+0.6").to(".first-page p span", {
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.012
+        }, "<").to(".first-page .box", {
+            opacity: 1,
+            duration: 0.3,
+        }, "<").from(".first-page .box .line", {
             width: 0,
             duration: 0.8,
         }, "<+0.4").from(".first-page .box p", {
@@ -394,11 +426,11 @@ window.onload = function () {
                 let yDistance;
                 if (index >= Math.round(blocksNum.x / 2)) {
                     if (index == Math.round(blocksNum.x / 2)) {
-                        yDistance = window.innerHeight * 1.5
+                        yDistance = window.innerHeight * 1.3
                     } else if (index % Math.round(blocksNum.x / 2) == 1) {
-                        yDistance = window.innerHeight * 1.4
-                    } else if (index % Math.round(blocksNum.x / 2) == 2) {
                         yDistance = window.innerHeight * 1.2
+                    } else if (index % Math.round(blocksNum.x / 2) == 2) {
+                        yDistance = window.innerHeight * 1.1
                     } else if (index % Math.round(blocksNum.x / 2) == 3) {
                         yDistance = window.innerHeight * 0.9
                     } else if (index % Math.round(blocksNum.x / 2) == 4) {

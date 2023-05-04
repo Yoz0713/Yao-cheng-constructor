@@ -18,7 +18,17 @@ function gradientSquareAnimation() {
             opacity: 0.4
         })
     })
-    console.log(square)
 }
 
 gradientSquareAnimation()
+
+
+function toggleMenu() {
+    const btn = document.querySelector("header .close");
+    const menu = document.querySelector("header ul")
+    btn.addEventListener("click", () => {
+        btn.classList.toggle("active")
+        menu.classList.toggle("active-ul")
+    })
+}
+toggleMenu()

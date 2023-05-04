@@ -75,6 +75,7 @@
 
         @include mobile() {
             height: 220vw;
+            padding-top: 10vw;
         }
 
         .canvas-container {
@@ -93,26 +94,29 @@
                 opacity: 0.99;
                 backface-visibility: hidden;
 
+
                 &:first-child {
                     display: none;
                 }
+
             }
         }
 
         .banner-paraBox {
             position: absolute;
             right: 10vw;
-            top: 36vh;
+            top: 33vh;
             color: #1a1a1a;
-
+            opacity: 0;
 
             h2 {
-                line-height: 2vw;
+                line-height: 1.5;
 
                 span {
                     font-size: var(--ch_ml_text);
                     font-family: 'Cormorant Garamond', serif;
                     font-weight: 500;
+                    opacity: 0;
                 }
             }
 
@@ -122,16 +126,32 @@
                 letter-spacing: 0.05em;
                 margin: pxConvertor(25) 0 pxConvertor(40);
 
+                span {
+                    opacity: 0;
+                }
+
+                @include tablet() {
+                    margin: pxConvertor2(25) 0 pxConvertor2(40);
+                }
             }
 
             .box {
                 position: relative;
                 padding-left: pxConvertor(110);
+                opacity: 0;
 
                 p {
                     font-size: pxConvertor(20);
                     line-height: 0;
                     margin: 0;
+
+                    span {
+                        opacity: 0;
+                    }
+
+                    @include tablet() {
+                        font-size: pxConvertor2(20.7);
+                    }
                 }
 
                 .line {

@@ -141,12 +141,13 @@
             display: block;
             position: absolute;
             right: 4vw;
-            top: 4.5vw;
-            width: pxConvertor2(30);
-            height: pxConvertor2(30.5);
+            top: 3.8vw;
+            width: pxConvertor2(50);
+            height: pxConvertor2(50);
             transform: rotate(45deg);
             cursor: pointer;
             transition: 0.3s;
+            padding: pxConvertor2(25);
 
             .line {
                 position: absolute;
@@ -157,7 +158,7 @@
                 background-color: #000;
                 margin: auto 0;
                 left: 0;
-                transform: rotate(-45deg) translateY(-1.25vw);
+                transform: rotate(-45deg) translateY(-1.75vw);
                 transition: 0.3s;
             }
 
@@ -187,7 +188,7 @@
                 margin: 0 auto;
                 width: 1px;
                 height: 100%;
-                transform: rotate(45deg) translateX(-2.5vw);
+                transform: rotate(45deg) translateX(-3.5vw);
             }
         }
     }

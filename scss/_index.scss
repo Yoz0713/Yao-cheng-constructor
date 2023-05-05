@@ -362,6 +362,10 @@
                 height: 85vw;
             }
 
+            @include mobile() {
+                height: 105vw;
+            }
+
             .swiper-wrapper {
                 width: 100%;
                 height: 100%;
@@ -391,6 +395,10 @@
                             width: pxConvertor2(505);
                             bottom: auto;
                             top: 35vw;
+                        }
+
+                        @include mobile() {
+                            top: 45vw;
                         }
 
                         img {
@@ -429,6 +437,10 @@
                                 letter-spacing: 0.1em;
                                 bottom: auto;
                                 top: 29vw;
+                            }
+
+                            @include mobile() {
+                                top: 38vw;
                             }
                         }
 
@@ -483,6 +495,10 @@
 
                         @include tablet() {
                             width: pxConvertor2(505);
+                        }
+
+                        @include mobile() {
+                            width: pxConvertor2(650);
                         }
 
                         &> :nth-child(1) {
@@ -548,6 +564,10 @@
                     right: 0;
                     margin: 0 auto;
                     bottom: 8vw;
+                }
+
+                @include mobile() {
+                    bottom: 9vw;
                 }
 
                 img {

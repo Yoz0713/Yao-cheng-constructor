@@ -9,6 +9,10 @@
         align-items: center;
         color: #1a1a1a;
 
+        @include tablet() {
+            width: 100%;
+        }
+
         h2,
         h4 {
             text-align: center;
@@ -23,6 +27,10 @@
             margin: 1.5vw 0 1.5vw;
             letter-spacing: 0.1em;
 
+            @include tablet() {
+                margin: 5vw 0;
+            }
+
             &::after {
                 display: block;
                 content: "";
@@ -34,12 +42,21 @@
                 width: pxConvertor(93);
                 height: 1px;
                 background-color: #1a1a1a;
+
+                @include tablet() {
+                    width: pxConvertor2(93);
+                    top: -4vw;
+                }
             }
         }
 
         p {
             width: pxConvertor(575.86);
             @include para();
+
+            @include tablet() {
+                width: 100%;
+            }
 
             span {
                 font-family: "Microsoft JhengHei", serif;
@@ -58,6 +75,12 @@
             width: 100%;
             height: 100%;
             opacity: 1;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
         }
     }
 
@@ -76,6 +99,15 @@
         @include mobile() {
             height: 220vw;
             padding-top: 10vw;
+        }
+
+        #particles-js {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
         }
 
         .canvas-container {
@@ -109,8 +141,24 @@
             color: #1a1a1a;
             opacity: 0;
 
+            @include tablet() {
+                padding: 6vw 0;
+                right: 3vw;
+                top: pxConvertor2(350);
+                // background: linear-gradient(-45deg, #ffffff13 0%, #ffffffa9 50%, #ffffff13 100%);
+                // background-size: cover;
+                // background-repeat: no-repeat;
+                // backdrop-filter: blur(3px);
+                // border-radius: 10px;
+            }
+
+            @include mobile() {
+                top: pxConvertor2(600);
+            }
+
             h2 {
-                line-height: 1.5;
+                line-height: 1.5em;
+                font-size: var(--ch_ml_text);
 
                 span {
                     font-size: var(--ch_ml_text);
@@ -172,16 +220,26 @@
     }
 
     .second-page {
-
         display: flex;
         position: relative;
         align-items: center;
         width: 100%;
         padding: 0 pxConvertor(205);
 
+        @include tablet() {
+            flex-direction: column;
+            padding: 0;
+            width: 87.5%;
+            margin: 0 auto;
+        }
+
         .left,
         .right {
             flex: 0 0 50%;
+
+            @include tablet() {
+                width: 100%;
+            }
         }
 
         .left {
@@ -189,9 +247,19 @@
             justify-content: flex-start;
             align-items: center;
 
+            @include tablet() {
+                justify-content: space-between;
+                margin-bottom: 5vw;
+            }
+
             .imgBox {
                 width: pxConvertor(353.5);
                 height: pxConvertor(530.25);
+
+                @include tablet() {
+                    width: 48%;
+                    height: pxConvertor2(460);
+                }
 
                 img {
                     width: 100%;
@@ -200,8 +268,8 @@
                 }
 
                 &:nth-child(1) {
-                    margin-top: 5vw;
-                    margin-right: 0.8vw;
+                    margin-top: 14vw;
+                    margin-right: 3vw;
                 }
 
 
@@ -223,6 +291,12 @@
                 height: pxConvertor(310);
                 left: 0;
                 top: 0;
+
+                @include tablet() {
+                    left: -8vw;
+                    width: pxConvertor2(50);
+                    height: pxConvertor2(268.7);
+                }
             }
 
             & :nth-child(2) {
@@ -230,6 +304,14 @@
                 height: pxConvertor(235);
                 left: 44.8vw;
                 top: 22.5vw;
+
+                @include tablet() {
+                    left: auto;
+                    right: -4vw;
+                    top: 55vw;
+                    width: pxConvertor2(105);
+                    height: pxConvertor2(203.6);
+                }
             }
 
             & :nth-child(3) {
@@ -253,11 +335,20 @@
         width: pxConvertor(1705);
         margin: 12vw auto 4vw;
 
+        @include tablet() {
+            width: 87.5%;
+        }
+
         .paraBox {
 
             p {
                 text-align: center;
                 width: pxConvertor(781.822);
+
+                @include tablet() {
+                    width: 100%;
+                    text-align: start;
+                }
             }
         }
 
@@ -266,6 +357,10 @@
             overflow: hidden;
             width: 100%;
             height: 30vw;
+
+            @include tablet() {
+                height: 85vw;
+            }
 
             .swiper-wrapper {
                 width: 100%;
@@ -278,6 +373,10 @@
                     width: 20%;
                     transition: margin 1s;
 
+                    @include tablet() {
+                        width: 100%;
+                    }
+
                     .box {
                         position: absolute;
                         right: 0;
@@ -287,6 +386,12 @@
                         margin: auto;
                         width: pxConvertor(260);
                         transition: 1s;
+
+                        @include tablet() {
+                            width: pxConvertor2(505);
+                            bottom: auto;
+                            top: 35vw;
+                        }
 
                         img {
                             position: absolute;
@@ -317,6 +422,14 @@
                             letter-spacing: 0.05em;
                             line-height: 2;
                             opacity: 0;
+
+                            @include tablet {
+                                width: pxConvertor2(440);
+                                line-height: 1.3;
+                                letter-spacing: 0.1em;
+                                bottom: auto;
+                                top: 29vw;
+                            }
                         }
 
                         &> :nth-child(1) {
@@ -360,9 +473,17 @@
                 .swiper-slide-active {
                     margin-right: 8vw;
 
+                    @include tablet() {
+                        margin: 0;
+                    }
+
                     .box {
                         left: 0vw;
                         width: pxConvertor(500);
+
+                        @include tablet() {
+                            width: pxConvertor2(505);
+                        }
 
                         &> :nth-child(1) {
                             width: 65%;
@@ -397,10 +518,18 @@
                 .swiper-slide-prev {
                     margin-left: -3.9vw;
 
+                    @include tablet() {
+                        margin: 0;
+                    }
+
                 }
 
                 .swiper-slide-next {
                     margin-right: -3.9vw;
+
+                    @include tablet() {
+                        margin: 0;
+                    }
 
                 }
             }
@@ -412,9 +541,22 @@
                 bottom: 1.8vw;
                 z-index: 2;
 
+                @include tablet() {
+                    justify-content: space-between;
+                    width: 86%;
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                    bottom: 14vw;
+                }
+
                 img {
                     width: pxConvertor(40);
                     cursor: pointer;
+
+                    @include tablet() {
+                        width: pxConvertor2(40);
+                    }
                 }
 
                 &> :nth-child(1) {
@@ -429,6 +571,14 @@
                 bottom: 2vw;
                 z-index: 2;
 
+                @include tablet() {
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                    justify-content: center;
+                    bottom: 0vw;
+                }
+
                 p {
                     color: #1a1a1a;
                     font-size: var(--ch_m_text);
@@ -436,6 +586,10 @@
 
                 &> :nth-child(1) {
                     margin-right: 5vw;
+
+                    @include tablet() {
+                        margin-right: 16vw;
+                    }
 
                     &::after {
                         display: block;
@@ -448,6 +602,13 @@
                         width: 4vw;
                         height: 1.2px;
                         background-color: #1a1a1a;
+
+                        @include tablet() {
+                            left: 0;
+                            right: 0;
+                            margin: auto;
+                            width: 10vw;
+                        }
                     }
                 }
             }
@@ -461,6 +622,13 @@
                 height: pxConvertor(235);
                 left: pxConvertor(100);
                 top: 8vw;
+
+                @include tablet() {
+                    width: pxConvertor2(122);
+                    height: pxConvertor2(235);
+                    left: -5vw;
+                    top: 12vw;
+                }
             }
 
             & :nth-child(2) {
@@ -468,6 +636,13 @@
                 height: pxConvertor(235);
                 left: pxConvertor(162);
                 top: 5vw;
+
+                @include tablet() {
+                    width: pxConvertor2(122);
+                    height: pxConvertor2(235);
+                    left: 4.5vw;
+                    top: 5vw;
+                }
             }
         }
     }
@@ -476,19 +651,42 @@
         position: relative;
         padding-bottom: 15vw;
 
+        @include tablet() {
+            display: flex;
+            flex-direction: column;
+            margin-top: 18vw;
+        }
+
         .paraBox {
+            @include tablet() {
+                margin-top: 8vw;
+            }
 
             h2,
             h4 {
                 margin-right: -60vw;
+
+                @include tablet() {
+                    margin-right: 0;
+                }
             }
 
             p {
                 text-align: center;
                 margin-top: 15vw;
 
+                @include tablet() {
+                    margin-top: 0;
+
+                }
+
                 span {
                     display: block;
+
+                    @include tablet() {
+                        display: inline-block;
+                        font-size: var(--ch_xs_text);
+                    }
                 }
             }
         }
@@ -500,8 +698,29 @@
             width: 100%;
             height: 100%;
 
+            @include tablet() {
+                display: flex;
+                justify-content: space-between;
+                position: static;
+                order: -1;
+                width: 85%;
+                margin: 0 auto;
+                height: auto;
+            }
+
             &>div {
                 position: absolute;
+
+                @include tablet() {
+                    position: relative;
+                    top: auto !important;
+                    bottom: auto !important;
+                    right: auto !important;
+                    left: auto !important;
+                    order: -1;
+                    width: 48% !important;
+                    height: pxConvertor2(451) !important;
+                }
             }
 
             img {
@@ -516,6 +735,10 @@
                 height: pxConvertor(474.7);
                 left: 0;
                 top: 3vw;
+
+                @include tablet() {
+                    margin-top: 8vw;
+                }
             }
 
             &> :nth-child(2) {
@@ -530,6 +753,10 @@
                 height: pxConvertor(426.7);
                 right: pxConvertor(119);
                 top: 18vw;
+
+                @include tablet() {
+                    display: none;
+                }
             }
         }
 

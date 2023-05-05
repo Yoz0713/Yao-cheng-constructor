@@ -28,11 +28,11 @@
     --ch_xl_text: #{pxConvertor(60)};
 
     @include tablet() {
-        --ch_xs_text: #{pxConvertor2(16)};
-        --ch_s_text:#{pxConvertor2(18)};
-        --ch_m_text: #{pxConvertor2(24)};
-        --ch_mml_text: #{pxConvertor2(32)};
-        --ch_ml_text:#{pxConvertor2(32)};
+        --ch_xs_text: #{pxConvertor2(22)};
+        --ch_s_text:#{pxConvertor2(28)};
+        --ch_m_text: #{pxConvertor2(32)};
+        --ch_mml_text: #{pxConvertor2(36)};
+        --ch_ml_text:#{pxConvertor2(40)};
         --ch_l_text: #{pxConvertor2(48)};
         --ch_xl_text: #{pxConvertor2(60)};
     }
@@ -140,10 +140,10 @@
         @include tablet() {
             display: block;
             position: absolute;
-            right: 30px;
-            top: 25px;
-            width: pxConvertor2(40);
-            height: pxConvertor2(40);
+            right: 4vw;
+            top: 4.5vw;
+            width: pxConvertor2(30);
+            height: pxConvertor2(30.5);
             transform: rotate(45deg);
             cursor: pointer;
             transition: 0.3s;
@@ -157,7 +157,7 @@
                 background-color: #000;
                 margin: auto 0;
                 left: 0;
-                transform: rotate(-45deg) translateY(-9px);
+                transform: rotate(-45deg) translateY(-1.25vw);
                 transition: 0.3s;
             }
 
@@ -187,18 +187,18 @@
                 margin: 0 auto;
                 width: 1px;
                 height: 100%;
-                transform: rotate(45deg) translateX(-18px);
+                transform: rotate(45deg) translateX(-2.5vw);
             }
         }
     }
 
     .active {
         &::after {
-            transform: rotate(0) translate(-12px, -12px);
+            transform: rotate(0) translate(-1vw, -2.5vw);
         }
 
         &::before {
-            transform: rotate(0) translate(-12px, -12px);
+            transform: rotate(0) translate(-1vw, -2.5vw);
         }
 
         .line {
@@ -219,16 +219,44 @@
     height: pxConvertor(77);
     background-color: #4d4d4d;
 
+    @include tablet() {
+        flex-direction: column;
+        height: pxConvertor2(186.2);
+    }
+
     p {
         color: #ffffff;
         font-weight: 500;
-        font-size: var(--ch_xs_test);
+        font-size: var(--ch_xs_text);
         letter-spacing: 0.1em;
         font-family: "Microsoft JhengHei", serif;
     }
 
+    &> :nth-child(1) {
+        @include tablet() {
+            order: 3;
+        }
+
+    }
+
+    &> :nth-child(2) {
+        @include tablet() {
+            margin: 2vw 0;
+        }
+    }
+
+    &> :nth-child(3) {
+        @include tablet() {
+            order: -1;
+        }
+    }
+
     &> :not(:last-child) {
         margin-right: 0.5vw;
+
+        @include tablet() {
+            margin-right: 0;
+        }
     }
 }
 
@@ -243,6 +271,10 @@
         font-size: pxConvertor(96);
         color: #6b8786;
         font-weight: 400;
+
+        @include tablet() {
+            font-size: pxConvertor2(96);
+        }
     }
 
 

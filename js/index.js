@@ -9,7 +9,12 @@ window.onload = function () {
     splitText(".first-page .banner-paraBox > :nth-child(2)")
 
     //首頁切割輪播 imgRatio = 20 : 11
-    const images = ['./img/index/webp/first-page-banner1.webp', './img/index/jpg/banner-bg2.jpg', './img/index/jpg/banner-bg3.jpg', './img/index/jpg/banner-bg4.jpg'];
+    let images = [];
+    if (window.innerWidth > 820) {// 電腦版圖片
+        images = ['./img/index/webp/first-page-banner1.webp', './img/index/jpg/banner-bg2.jpg', './img/index/jpg/banner-bg3.jpg'];
+    } else {//手機板圖片
+        images = ['./img/index/jpg/banner-bg4.jpg'];
+    }
     let index = 0;
     let isAnimating = false;
     //第一cut方塊切割數量 = blocksNum.x * blocksNum.y
@@ -30,7 +35,7 @@ window.onload = function () {
         if (flag) {
             let random = Math.floor(Math.random() * images.length);
 
-            imageUrl = images[3];
+            imageUrl = images[random];
         } else {
             imageUrl = images[index];
         }
@@ -221,11 +226,14 @@ window.onload = function () {
         }).to(".first-page .banner-paraBox ", {
             opacity: 1,
             duration: 0.3,
-        }, "<+1.8").from(".first-page h2 span", {
+        }, "<+1.8").to("#particles-js", {
+            opacity: 1,
+            duration: 0.3,
+        }, "<+0.4").from(".first-page h2 span", {
             x: 80,
             duration: 0.6,
             stagger: 0.012
-        }, "<+0.6").to(".first-page h2 span", {
+        }, "<").to(".first-page h2 span", {
             opacity: 1,
             duration: 0.6,
             stagger: 0.012
@@ -257,7 +265,7 @@ window.onload = function () {
         let bannerOut = gsap.timeline({
             scrollTrigger: {
                 trigger: ".second-page",
-                start: "top 80%",
+                start: "top bottom",
                 scrub: 1,
                 end: `+=${window.innerHeight}`,
                 toggleActions: "play none none reverse"
@@ -270,8 +278,11 @@ window.onload = function () {
         bannerOut.to(".banner-paraBox", {
             opacity: 0,
             y: -window.innerHeight / 2,
+            duration: 500 / window.innerHeight
+        }).to("#particles-js", {
+            opacity: 0,
             duration: 0.2
-        }).to(canvases1, {
+        }, "<").to(canvases1, {
             y: (index, target) => {
                 let yDistance;
                 if (index >= Math.round(blocksNum.x / 2)) {
@@ -301,7 +312,6 @@ window.onload = function () {
                         yDistance = window.innerHeight * 1
                     }
                 }
-
                 return `-${yDistance}px`;
             },
             duration: 1
@@ -504,8 +514,8 @@ window.onload = function () {
     function carosule() {
         const swiperIndex = document.querySelector(".swiper-index")
         const swiper = new Swiper(".swiper", {
-            slidesPerView: 5,
-            centeredSlides: true,
+            slidesPerView: 1,
+
             loop: true,
             spaceBetween: 0,
             speed: 1000,
@@ -529,7 +539,13 @@ window.onload = function () {
                 },
             },
             effect: 'slide' /* 设置幻灯片效果为'slide' */,
+            breakpoints: {
+                821: {  //当屏幕宽度大于等于320
+                    slidesPerView: 5,
+                    centeredSlides: true,
+                },
 
+            }
         });
         //pagination init
         if (swiper.realIndex == 1) {
@@ -637,6 +653,13 @@ window.onload = function () {
         }, "<+0.3")
     }
     pageAnimation()
+
+    function particles() {
+        particlesJS.load('particles-js', './js/particlesjs-config.json', function () {
+            console.log('callback - particles.js config loaded',);
+        });
+    }
+    particles()
 }
 
 

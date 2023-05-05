@@ -216,7 +216,7 @@
   position: relative;
   font-size: var(--ch_l_text);
   font-family: "Cormorant Garamond", serif;
-  font-weight: 400;
+  font-weight: 500;
 }
 .en-title > :nth-child(1) {
   font-size: 5vw;
@@ -1292,169 +1292,126 @@
   left: 2.96875vw;
 }
 
-.repair {
+.service {
   width: 100%;
 }
-.repair .first-page {
+.service .first-page {
   position: relative;
   width: 100%;
   height: 50.5vw;
   margin-top: 2vw;
 }
-.repair .first-page .titleBox {
+.service .first-page .titleBox {
   position: absolute;
   top: 19.4270833333vw;
   left: 13.8020833333vw;
   width: -moz-fit-content;
   width: fit-content;
 }
-.repair .first-page .titleBox > p {
+.service .first-page .titleBox > p {
   font-size: var(--ch_mml_text);
   letter-spacing: 0.1em;
-  font-weight: 600;
-}
-.repair .first-page .titleBox .paraBox {
-  margin-top: 1.5vw;
-}
-.repair .first-page .titleBox .paraBox .title {
-  font-size: 1.0416666667vw;
-  color: #333;
-  opacity: 0.8;
-  letter-spacing: 0.1em;
   font-weight: 500;
-  margin-bottom: 1vw;
 }
-.repair .first-page .titleBox .paraBox .para {
-  font-size: var(--ch_s_text);
-  color: #333333;
-  letter-spacing: 0.1em;
-  line-height: 2.25;
-  font-family: "Microsoft JhengHei", serif;
-  font-weight: 500;
-  font-size: var(--ch_xs_text);
-  width: 21.6145833333vw;
-  margin-bottom: 1vw;
-  color: #333;
-  opacity: 0.8;
-}
-.repair .first-page .titleBox .paraBox .service-online {
-  font-size: var(--ch_s_text);
-  color: #333;
-  opacity: 0.8;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.5vw;
-}
-.repair .first-page .titleBox .paraBox .service-online span {
-  font-size: 0.7291666667vw;
-  font-weight: 400;
-}
-.repair .first-page .titleBox .paraBox .service-time,
-.repair .first-page .titleBox .paraBox .phone {
-  font-size: var(--ch_s_text);
-  color: #333333;
-  letter-spacing: 0.1em;
-  line-height: 2.25;
-  font-family: "Microsoft JhengHei", serif;
-  font-weight: 500;
-  font-size: var(--ch_xs_text);
-  width: 21.6145833333vw;
-  color: #333;
-  opacity: 0.8;
-  line-height: 1.8;
-}
-.repair .first-page-bg {
+.service .first-page-bg {
   position: relative;
   width: 100%;
   height: 100%;
 }
-.repair .first-page-bg .imgBox {
+.service .first-page-bg .imgBox {
   position: absolute;
   width: 15.2083333333vw;
   height: pxConverotor(436);
 }
-.repair .first-page-bg .imgBox img {
+.service .first-page-bg .imgBox img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.repair .first-page-bg .imgBox:nth-child(1) {
+.service .first-page-bg .imgBox:nth-child(1) {
   left: 50.3125vw;
   top: 10.15625vw;
 }
-.repair .first-page-bg .imgBox:nth-child(2) {
+.service .first-page-bg .imgBox:nth-child(2) {
   left: 66.875vw;
   top: 14.3229166667vw;
 }
-.repair .first-page-bg .gradient-square .box:nth-child(1) {
+.service .first-page-bg .gradient-square .box:nth-child(1) {
   width: 6.3541666667vw;
   height: 12.2395833333vw;
   top: 18.9583333333vw;
   left: 0.5208333333vw;
 }
-.repair .first-page-bg .gradient-square .box:nth-child(2) {
+.service .first-page-bg .gradient-square .box:nth-child(2) {
   width: 12.3567708333vw;
   height: 23.8020833333vw;
   top: 10.9895833333vw;
   left: 3.9583333333vw;
 }
-.repair .first-page-bg .gradient-square .box:nth-child(3) {
+.service .first-page-bg .gradient-square .box:nth-child(3) {
   width: 4.7046875vw;
   height: 9.0625vw;
   top: 30.15625vw;
   left: 29.21875vw;
 }
-.repair .first-page-bg .gradient-square .box:nth-child(4) {
+.service .first-page-bg .gradient-square .box:nth-child(4) {
   width: 4.7046875vw;
   height: 9.0625vw;
   top: 32.5vw;
   left: 31.9791666667vw;
 }
-.repair .first-page-bg .gradient-square .box:nth-child(5) {
+.service .first-page-bg .gradient-square .box:nth-child(5) {
   width: 5.9546875vw;
   height: 11.4703125vw;
   top: 34.4270833333vw;
   left: 89.375vw;
 }
-.repair .second-page {
+.service .repair-content .second-page {
   position: relative;
   display: flex;
   justify-content: space-between;
   width: 52.5%;
-  margin: 0 auto 7vw;
+  margin: 5vw auto 15vw;
 }
-.repair .second-page > div {
+.service .repair-content .second-page > .left,
+.service .repair-content .second-page .right {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 36.5%;
 }
-.repair .second-page > div .titleBox {
+.service .repair-content .second-page > .left .titleBox,
+.service .repair-content .second-page .right .titleBox {
   display: flex;
   margin-bottom: 1.2vw;
 }
-.repair .second-page > div .titleBox img {
+.service .repair-content .second-page > .left .titleBox img,
+.service .repair-content .second-page .right .titleBox img {
   width: 1.1458333333vw;
   margin-right: 0.5vw;
 }
-.repair .second-page > div .titleBox h4 {
+.service .repair-content .second-page > .left .titleBox h4,
+.service .repair-content .second-page .right .titleBox h4 {
   font-size: 1.25vw;
   letter-spacing: 0.15em;
   color: #333;
   font-weight: 400;
 }
-.repair .second-page > div .paraBox p {
+.service .repair-content .second-page > .left .paraBox p,
+.service .repair-content .second-page .right .paraBox p {
   position: relative;
   font-size: 1.0416666667vw;
   color: #333;
   letter-spacing: 0.15em;
   line-height: 1.6;
 }
-.repair .second-page > div .paraBox p:not(:last-child) {
+.service .repair-content .second-page > .left .paraBox p:not(:last-child),
+.service .repair-content .second-page .right .paraBox p:not(:last-child) {
   margin-bottom: 0.8vw;
 }
-.repair .second-page > div .paraBox p::after {
+.service .repair-content .second-page > .left .paraBox p::after,
+.service .repair-content .second-page .right .paraBox p::after {
   display: block;
   content: "";
   position: absolute;
@@ -1466,7 +1423,87 @@
   background-color: #333;
   opacity: 0.8;
 }
-.repair .second-page::after {
+.service .repair-content .second-page .top {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: -16vw;
+}
+.service .repair-content .second-page .top .paraBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.5vw;
+}
+.service .repair-content .second-page .top .paraBox .title {
+  position: relative;
+  font-size: var(--ch_mml_text);
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  margin-bottom: 2vw;
+}
+.service .repair-content .second-page .top .paraBox .title::after {
+  display: block;
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 4.5vw;
+  height: 1px;
+  background-color: #000;
+  bottom: -0.6vw;
+}
+.service .repair-content .second-page .top .paraBox .para {
+  font-size: var(--ch_s_text);
+  color: #333333;
+  letter-spacing: 0.1em;
+  line-height: 2.25;
+  font-family: "Microsoft JhengHei", serif;
+  font-weight: 500;
+  font-size: var(--ch_xs_text);
+  width: 21.6145833333vw;
+  margin-bottom: 1vw;
+  color: #333;
+  opacity: 0.8;
+  text-align: center;
+}
+.service .repair-content .second-page .contact-box {
+  position: absolute;
+  left: 0;
+  bottom: -7vw;
+}
+.service .repair-content .second-page .contact-box .service-online {
+  font-size: var(--ch_s_text);
+  color: #333;
+  opacity: 0.8;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5vw;
+}
+.service .repair-content .second-page .contact-box .service-online span {
+  font-size: 0.7291666667vw;
+  font-weight: 400;
+}
+.service .repair-content .second-page .contact-box .service-time,
+.service .repair-content .second-page .contact-box .phone {
+  display: inline-block;
+  font-size: var(--ch_s_text);
+  color: #333333;
+  letter-spacing: 0.1em;
+  line-height: 2.25;
+  font-family: "Microsoft JhengHei", serif;
+  font-weight: 500;
+  font-size: var(--ch_xs_text);
+  color: #333;
+  opacity: 0.8;
+  line-height: 1.8;
+}
+.service .repair-content .second-page .contact-box .phone {
+  margin-left: 2vw;
+}
+.service .repair-content .second-page::after {
   display: block;
   content: "";
   position: absolute;
@@ -1480,21 +1517,21 @@
   background-color: #333;
   opacity: 0.15;
 }
-.repair .third-page {
+.service .repair-content .third-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   margin-bottom: 6.5vw;
 }
-.repair .third-page .title {
+.service .repair-content .third-page .title {
   font-size: 1.25vw;
   letter-spacing: 0.15em;
   color: #333;
   font-weight: 600;
   margin-bottom: 5vw;
 }
-.repair .third-page img {
+.service .repair-content .third-page img {
   width: 65%;
   height: auto;
 }

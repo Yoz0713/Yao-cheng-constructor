@@ -79,7 +79,7 @@ window.onload = function () {
                         // 設置canvas的位置和大小
                         blockCanvas.style.top = j == 1 ? standardHeight + gap + 'px' : standardHeight + longHeight * (j - 1) + gap * j + 'px';
                         blockCanvas.style.left = i == 0 ? '0px' : (i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap) + 'px';
-                        blockCanvas.style.width = window.innerWidth > 820 ? i < 6 || i > 8 ? standardWidth + "px" : standardWidth + gap + "px" : i < 1 || i > 4 ? standardWidth + "px" : standardWidth + gap * 0.95 + "px";
+                        blockCanvas.style.width = window.innerWidth > 820 ? i < 6 || i > 8 ? standardWidth + "px" : standardWidth + gap * 0.99 + "px" : i < 1 || i > 4 ? standardWidth + "px" : standardWidth + gap * 1 + "px";
                         blockCanvas.style.height = longHeight + 'px';
                         // 將canvas元素添加到DOM中
                         document.querySelector('.canvas-container').appendChild(blockCanvas);

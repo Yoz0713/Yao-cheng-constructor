@@ -543,11 +543,11 @@
 
                 @include tablet() {
                     justify-content: space-between;
-                    width: 86%;
+                    width: 100%;
                     left: 0;
                     right: 0;
                     margin: 0 auto;
-                    bottom: 14vw;
+                    bottom: 8vw;
                 }
 
                 img {
@@ -555,7 +555,8 @@
                     cursor: pointer;
 
                     @include tablet() {
-                        width: pxConvertor2(40);
+                        width: pxConvertor2(130);
+                        padding: pxConvertor2(40);
                     }
                 }
 

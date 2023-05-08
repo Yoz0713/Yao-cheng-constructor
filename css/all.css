@@ -1294,12 +1294,25 @@
 
 .service {
   width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
 }
 .service .first-page {
   position: relative;
   width: 100%;
   height: 50.5vw;
   margin-top: 2vw;
+}
+@media all and (max-width: 820px) {
+  .service .first-page {
+    height: 115vw;
+    margin-top: 20vw;
+  }
+}
+@media all and (max-width: 500px) {
+  .service .first-page {
+    height: 220vw;
+  }
 }
 .service .first-page .titleBox {
   position: absolute;
@@ -1308,20 +1321,69 @@
   width: -moz-fit-content;
   width: fit-content;
 }
+@media all and (max-width: 820px) {
+  .service .first-page .titleBox {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+}
+.service .first-page .titleBox h2 {
+  position: relative;
+}
+@media all and (max-width: 820px) {
+  .service .first-page .titleBox h2::after {
+    display: block;
+    content: "";
+    position: absolute;
+    bottom: -1.2vw;
+    width: 12vw;
+    height: 1px;
+    background-color: #000;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+}
 .service .first-page .titleBox > p {
   font-size: var(--ch_mml_text);
   letter-spacing: 0.1em;
   font-weight: 500;
+}
+@media all and (max-width: 820px) {
+  .service .first-page .titleBox > p {
+    margin-top: 6vw;
+  }
 }
 .service .first-page-bg {
   position: relative;
   width: 100%;
   height: 100%;
 }
+@media all and (max-width: 820px) {
+  .service .first-page-bg {
+    display: flex;
+    justify-content: space-between;
+    width: 82.5%;
+    height: auto;
+    margin: 8vw auto 0;
+  }
+}
 .service .first-page-bg .imgBox {
   position: absolute;
   width: 15.2083333333vw;
   height: pxConverotor(436);
+  z-index: 1;
+}
+@media all and (max-width: 820px) {
+  .service .first-page-bg .imgBox {
+    position: static;
+    width: 39.5643229167vw;
+    height: 58.6736979167vw;
+  }
 }
 .service .first-page-bg .imgBox img {
   width: 100%;
@@ -1337,11 +1399,27 @@
   left: 66.875vw;
   top: 14.3229166667vw;
 }
+@media all and (max-width: 820px) {
+  .service .first-page-bg .imgBox:nth-child(2) {
+    margin-top: 9.5vw;
+  }
+}
+.service .first-page-bg .gradient-square {
+  z-index: 0;
+}
 .service .first-page-bg .gradient-square .box:nth-child(1) {
   width: 6.3541666667vw;
   height: 12.2395833333vw;
   top: 18.9583333333vw;
   left: 0.5208333333vw;
+}
+@media all and (max-width: 820px) {
+  .service .first-page-bg .gradient-square .box:nth-child(1) {
+    width: 8.9713541667vw;
+    height: 34.9869791667vw;
+    top: -30vw;
+    left: -8.5vw;
+  }
 }
 .service .first-page-bg .gradient-square .box:nth-child(2) {
   width: 12.3567708333vw;
@@ -1349,11 +1427,25 @@
   top: 10.9895833333vw;
   left: 3.9583333333vw;
 }
+@media all and (max-width: 820px) {
+  .service .first-page-bg .gradient-square .box:nth-child(2) {
+    width: 13.7630208333vw;
+    height: 26.5143229167vw;
+    top: 18vw;
+    left: auto;
+    right: -8.5vw;
+  }
+}
 .service .first-page-bg .gradient-square .box:nth-child(3) {
   width: 4.7046875vw;
   height: 9.0625vw;
   top: 30.15625vw;
   left: 29.21875vw;
+}
+@media all and (max-width: 820px) {
+  .service .first-page-bg .gradient-square .box:nth-child(3) {
+    display: none;
+  }
 }
 .service .first-page-bg .gradient-square .box:nth-child(4) {
   width: 4.7046875vw;
@@ -1361,89 +1453,69 @@
   top: 32.5vw;
   left: 31.9791666667vw;
 }
+@media all and (max-width: 820px) {
+  .service .first-page-bg .gradient-square .box:nth-child(4) {
+    display: none;
+  }
+}
 .service .first-page-bg .gradient-square .box:nth-child(5) {
   width: 5.9546875vw;
   height: 11.4703125vw;
   top: 34.4270833333vw;
   left: 89.375vw;
 }
-.service .repair-content .second-page {
+@media all and (max-width: 820px) {
+  .service .first-page-bg .gradient-square .box:nth-child(5) {
+    display: none;
+  }
+}
+.service .contentBox {
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  width: 52.5%;
-  margin: 5vw auto 15vw;
+  width: 100%;
+  margin: 5vw auto 10vw;
 }
-.service .repair-content .second-page > .left,
-.service .repair-content .second-page .right {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 36.5%;
-}
-.service .repair-content .second-page > .left .titleBox,
-.service .repair-content .second-page .right .titleBox {
-  display: flex;
-  margin-bottom: 1.2vw;
-}
-.service .repair-content .second-page > .left .titleBox img,
-.service .repair-content .second-page .right .titleBox img {
-  width: 1.1458333333vw;
-  margin-right: 0.5vw;
-}
-.service .repair-content .second-page > .left .titleBox h4,
-.service .repair-content .second-page .right .titleBox h4 {
-  font-size: 1.25vw;
-  letter-spacing: 0.15em;
-  color: #333;
-  font-weight: 400;
-}
-.service .repair-content .second-page > .left .paraBox p,
-.service .repair-content .second-page .right .paraBox p {
-  position: relative;
-  font-size: 1.0416666667vw;
-  color: #333;
-  letter-spacing: 0.15em;
-  line-height: 1.6;
-}
-.service .repair-content .second-page > .left .paraBox p:not(:last-child),
-.service .repair-content .second-page .right .paraBox p:not(:last-child) {
-  margin-bottom: 0.8vw;
-}
-.service .repair-content .second-page > .left .paraBox p::after,
-.service .repair-content .second-page .right .paraBox p::after {
-  display: block;
-  content: "";
+.service .contentBox > div {
+  width: 100%;
   position: absolute;
-  left: -0.8vw;
-  top: 0.8em;
-  width: 0.2vw;
-  height: 0.2vw;
-  border-radius: 50%;
-  background-color: #333;
-  opacity: 0.8;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 0;
+  opacity: 0;
+  transition: 0.6s;
 }
-.service .repair-content .second-page .top {
+@media all and (max-width: 820px) {
+  .service .contentBox > div {
+    width: 82.5%;
+  }
+}
+.service .contentBox > div .second-page .top {
   position: absolute;
   left: 0;
   right: 0;
   margin: 0 auto;
   top: -16vw;
 }
-.service .repair-content .second-page .top .paraBox {
+@media all and (max-width: 820px) {
+  .service .contentBox > div .second-page .top {
+    position: static;
+    margin-bottom: 5vw;
+  }
+}
+.service .contentBox > div .second-page .top .paraBox {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 1.5vw;
 }
-.service .repair-content .second-page .top .paraBox .title {
+.service .contentBox > div .second-page .top .paraBox .title {
   position: relative;
   font-size: var(--ch_mml_text);
   letter-spacing: 0.1em;
   font-weight: 500;
   margin-bottom: 2vw;
 }
-.service .repair-content .second-page .top .paraBox .title::after {
+.service .contentBox > div .second-page .top .paraBox .title::after {
   display: block;
   content: "";
   position: absolute;
@@ -1453,9 +1525,9 @@
   width: 4.5vw;
   height: 1px;
   background-color: #000;
-  bottom: -0.6vw;
+  bottom: -0.8vw;
 }
-.service .repair-content .second-page .top .paraBox .para {
+.service .contentBox > div .second-page .top .paraBox .para {
   font-size: var(--ch_s_text);
   color: #333333;
   letter-spacing: 0.1em;
@@ -1469,12 +1541,75 @@
   opacity: 0.8;
   text-align: center;
 }
-.service .repair-content .second-page .contact-box {
+@media all and (max-width: 820px) {
+  .service .contentBox > div .second-page .top .paraBox .para {
+    font-size: var(--ch_m_text);
+    width: 100%;
+    font-weight: 500;
+  }
+}
+.service .contentBox .repair .second-page {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 52.5%;
+  margin: 0 auto 10vw;
+}
+.service .contentBox .repair .second-page > .left,
+.service .contentBox .repair .second-page .right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 36.5%;
+}
+.service .contentBox .repair .second-page > .left .titleBox,
+.service .contentBox .repair .second-page .right .titleBox {
+  display: flex;
+  margin-bottom: 1.2vw;
+}
+.service .contentBox .repair .second-page > .left .titleBox img,
+.service .contentBox .repair .second-page .right .titleBox img {
+  width: 1.1458333333vw;
+  margin-right: 0.5vw;
+}
+.service .contentBox .repair .second-page > .left .titleBox h4,
+.service .contentBox .repair .second-page .right .titleBox h4 {
+  font-size: 1.25vw;
+  letter-spacing: 0.15em;
+  color: #333;
+  font-weight: 400;
+}
+.service .contentBox .repair .second-page > .left .paraBox p,
+.service .contentBox .repair .second-page .right .paraBox p {
+  position: relative;
+  font-size: 1.0416666667vw;
+  color: #333;
+  letter-spacing: 0.15em;
+  line-height: 1.6;
+}
+.service .contentBox .repair .second-page > .left .paraBox p:not(:last-child),
+.service .contentBox .repair .second-page .right .paraBox p:not(:last-child) {
+  margin-bottom: 0.8vw;
+}
+.service .contentBox .repair .second-page > .left .paraBox p::after,
+.service .contentBox .repair .second-page .right .paraBox p::after {
+  display: block;
+  content: "";
+  position: absolute;
+  left: -0.8vw;
+  top: 0.8em;
+  width: 0.2vw;
+  height: 0.2vw;
+  border-radius: 50%;
+  background-color: #333;
+  opacity: 0.8;
+}
+.service .contentBox .repair .second-page .contact-box {
   position: absolute;
   left: 0;
   bottom: -7vw;
 }
-.service .repair-content .second-page .contact-box .service-online {
+.service .contentBox .repair .second-page .contact-box .service-online {
   font-size: var(--ch_s_text);
   color: #333;
   opacity: 0.8;
@@ -1482,12 +1617,12 @@
   letter-spacing: 0.1em;
   margin-bottom: 0.5vw;
 }
-.service .repair-content .second-page .contact-box .service-online span {
+.service .contentBox .repair .second-page .contact-box .service-online span {
   font-size: 0.7291666667vw;
   font-weight: 400;
 }
-.service .repair-content .second-page .contact-box .service-time,
-.service .repair-content .second-page .contact-box .phone {
+.service .contentBox .repair .second-page .contact-box .service-time,
+.service .contentBox .repair .second-page .contact-box .phone {
   display: inline-block;
   font-size: var(--ch_s_text);
   color: #333333;
@@ -1500,10 +1635,10 @@
   opacity: 0.8;
   line-height: 1.8;
 }
-.service .repair-content .second-page .contact-box .phone {
+.service .contentBox .repair .second-page .contact-box .phone {
   margin-left: 2vw;
 }
-.service .repair-content .second-page::after {
+.service .contentBox .repair .second-page::after {
   display: block;
   content: "";
   position: absolute;
@@ -1517,23 +1652,222 @@
   background-color: #333;
   opacity: 0.15;
 }
-.service .repair-content .third-page {
+.service .contentBox .repair .third-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-bottom: 6.5vw;
 }
-.service .repair-content .third-page .title {
+.service .contentBox .repair .third-page .title {
   font-size: 1.25vw;
   letter-spacing: 0.15em;
   color: #333;
   font-weight: 600;
   margin-bottom: 5vw;
 }
-.service .repair-content .third-page img {
+.service .contentBox .repair .third-page img {
   width: 65%;
   height: auto;
+}
+.service .contentBox .assurance .bottom {
+  display: flex;
+  justify-content: center;
+  margin-top: 2vw;
+}
+.service .contentBox .assurance .bottom img {
+  position: relative;
+  z-index: 1;
+  width: 62.8802083333vw;
+  height: auto;
+}
+.service .contentBox .assurance .bottom .sign {
+  position: absolute;
+  right: 0;
+  bottom: -10vw;
+  width: 36.9270833333vw;
+  height: auto;
+  z-index: 0;
+}
+.service .contentBox .contact .second-page .top .paraBox .para {
+  width: 30.9895833333vw;
+}
+@media all and (max-width: 820px) {
+  .service .contentBox .contact .second-page .top .paraBox .para {
+    width: 100%;
+  }
+}
+.service .contentBox .contact .bottom {
+  display: flex;
+  justify-content: center;
+}
+.service .contentBox .contact .bottom form {
+  width: 30.9895833333vw;
+}
+@media all and (max-width: 820px) {
+  .service .contentBox .contact .bottom form {
+    width: 100%;
+  }
+}
+.service .contentBox .contact .bottom form .formBox {
+  display: flex;
+  width: 100%;
+}
+.service .contentBox .contact .bottom form .formBox label {
+  font-size: var(--ch_s_text);
+  color: #333;
+  letter-spacing: 2em;
+}
+.service .contentBox .contact .bottom form .formBox input,
+.service .contentBox .contact .bottom form .formBox textarea {
+  flex-grow: 1;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(102, 102, 102, 0.6117647059);
+}
+.service .contentBox .contact .bottom form .formBox:not(:last-child) {
+  margin-bottom: 2vw;
+}
+@media all and (max-width: 820px) {
+  .service .contentBox .contact .bottom form .formBox:not(:last-child) {
+    margin-bottom: 6vw;
+  }
+}
+.service .contentBox .contact .bottom form button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15.5625vw;
+  height: 2.0052083333vw;
+  background-color: #6b8786;
+  color: #fff;
+  font-size: 0.7291666667vw;
+  letter-spacing: 0.05em;
+  border: none;
+  margin: 3.5vw auto 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+@media all and (max-width: 820px) {
+  .service .contentBox .contact .bottom form button {
+    width: 33.7239583333vw;
+    height: 8.2682291667vw;
+    font-size: 3.6458333333vw;
+  }
+}
+.service .contentBox .contact .bottom form button:hover {
+  width: 9.375vw;
+}
+.service .contentBox .active {
+  opacity: 1;
+}
+.service .contentBox .gradient-square {
+  z-index: 10;
+}
+.service .contentBox .gradient-square .box:nth-child(1) {
+  width: 6.3541666667vw;
+  height: 12.2395833333vw;
+  top: 18.9583333333vw;
+  left: 0.5208333333vw;
+}
+@media all and (max-width: 820px) {
+  .service .contentBox .gradient-square .box:nth-child(1) {
+    width: 8.9713541667vw;
+    height: 34.9869791667vw;
+    top: -30vw;
+    left: -8.5vw;
+  }
+}
+.service .contentBox .gradient-square .box:nth-child(2) {
+  width: 12.3567708333vw;
+  height: 23.8020833333vw;
+  top: 10.9895833333vw;
+  left: 3.9583333333vw;
+}
+@media all and (max-width: 820px) {
+  .service .contentBox .gradient-square .box:nth-child(2) {
+    width: 13.7630208333vw;
+    height: 26.5143229167vw;
+    top: 18vw;
+    left: auto;
+    right: -8.5vw;
+  }
+}
+.service .contentBox .gradient-square .box:nth-child(3) {
+  width: 4.7046875vw;
+  height: 9.0625vw;
+  top: 30.15625vw;
+  left: 29.21875vw;
+}
+@media all and (max-width: 820px) {
+  .service .contentBox .gradient-square .box:nth-child(3) {
+    display: none;
+  }
+}
+.service .contentBox .gradient-square .box:nth-child(4) {
+  width: 4.7046875vw;
+  height: 9.0625vw;
+  top: 32.5vw;
+  left: 31.9791666667vw;
+}
+@media all and (max-width: 820px) {
+  .service .contentBox .gradient-square .box:nth-child(4) {
+    display: none;
+  }
+}
+.service .contentBox .gradient-square .box:nth-child(5) {
+  width: 5.9546875vw;
+  height: 11.4703125vw;
+  top: 34.4270833333vw;
+  left: 89.375vw;
+}
+@media all and (max-width: 820px) {
+  .service .contentBox .gradient-square .box:nth-child(5) {
+    display: none;
+  }
+}
+.service .navBox {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  left: 2vw;
+  height: 10vw;
+}
+.service .navBox li {
+  cursor: pointer;
+}
+.service .navBox li p {
+  color: #6A6A6B;
+  font-size: 1.0416666667vw;
+  letter-spacing: 0.15em;
+  transition: 0.3s;
+  pointer-events: none;
+}
+@media all and (max-width: 820px) {
+  .service .navBox li p {
+    font-size: 2.8645833333vw;
+  }
+}
+.service .navBox li p span {
+  font-size: 0.8333333333vw;
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0;
+}
+@media all and (max-width: 820px) {
+  .service .navBox li p span {
+    font-size: 2.34375vw;
+  }
+}
+.service .navBox li:not(:last-child) {
+  margin-bottom: 1.2vw;
+}
+@media all and (max-width: 820px) {
+  .service .navBox li:not(:last-child) {
+    margin-bottom: 3.5vw;
+  }
+}
+.service .navBox .active p {
+  color: #6B8786;
 }
 
 * {

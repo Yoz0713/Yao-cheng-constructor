@@ -1,5 +1,7 @@
 .service {
     width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
 
     .first-page {
         position: relative;
@@ -7,16 +9,57 @@
         height: 50.5vw;
         margin-top: 2vw;
 
+        @include tablet() {
+            height: 115vw;
+            margin-top: 20vw;
+        }
+
+        @include mobile() {
+            height: 220vw;
+        }
+
         .titleBox {
             position: absolute;
             top: pxConvertor(373);
             left: pxConvertor(265);
             width: fit-content;
 
+            @include tablet() {
+                position: static;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+            }
+
+            h2 {
+                position: relative;
+
+                &::after {
+                    @include tablet() {
+                        display: block;
+                        content: "";
+                        position: absolute;
+                        bottom: -1.2vw;
+                        width: 12vw;
+                        height: 1px;
+                        background-color: #000;
+                        left: 0;
+                        right: 0;
+                        margin: 0 auto;
+                    }
+                }
+            }
+
             >p {
                 font-size: var(--ch_mml_text);
                 letter-spacing: 0.1em;
                 font-weight: 500;
+
+                @include tablet() {
+                    margin-top: 6vw;
+                }
             }
 
         }
@@ -26,10 +69,25 @@
             width: 100%;
             height: 100%;
 
+            @include tablet() {
+                display: flex;
+                justify-content: space-between;
+                width: 82.5%;
+                height: auto;
+                margin: 8vw auto 0;
+            }
+
             .imgBox {
                 position: absolute;
                 width: pxConvertor(292);
                 height: pxConverotor(436);
+                z-index: 1;
+
+                @include tablet() {
+                    position: static;
+                    width: pxConvertor2(303.854);
+                    height: pxConvertor2(450.614);
+                }
 
                 img {
                     width: 100%;
@@ -45,10 +103,15 @@
                 &:nth-child(2) {
                     left: pxConvertor(1284);
                     top: pxConvertor(275);
+
+                    @include tablet() {
+                        margin-top: 9.5vw;
+                    }
                 }
             }
 
             .gradient-square {
+                z-index: 0;
 
                 .box {
                     &:nth-child(1) {
@@ -57,6 +120,12 @@
                         top: pxConvertor(364);
                         left: pxConvertor(10);
 
+                        @include tablet() {
+                            width: pxConvertor2(68.9);
+                            height: pxConvertor2(268.7);
+                            top: -30vw;
+                            left: -8.5vw;
+                        }
 
                     }
 
@@ -65,6 +134,14 @@
                         height: pxConvertor(457);
                         top: pxConvertor(211);
                         left: pxConvertor(76);
+
+                        @include tablet() {
+                            width: pxConvertor2(105.7);
+                            height: pxConvertor2(203.63);
+                            top: 18vw;
+                            left: auto;
+                            right: -8.5vw;
+                        }
                     }
 
                     &:nth-child(3) {
@@ -72,6 +149,10 @@
                         height: pxConvertor(174);
                         top: pxConvertor(579);
                         left: pxConvertor(561);
+
+                        @include tablet() {
+                            display: none;
+                        }
                     }
 
                     &:nth-child(4) {
@@ -79,6 +160,10 @@
                         height: pxConvertor(174);
                         top: pxConvertor(624);
                         left: pxConvertor(614);
+
+                        @include tablet() {
+                            display: none;
+                        }
                     }
 
                     &:nth-child(5) {
@@ -86,191 +171,466 @@
                         height: pxConvertor(220.23);
                         top: pxConvertor(661);
                         left: pxConvertor(1716);
+
+                        @include tablet() {
+                            display: none;
+                        }
                     }
                 }
             }
         }
     }
 
-    .repair-content {
-        .second-page {
-            position: relative;
-            display: flex;
-            justify-content: space-between;
-            width: 52.5%;
-            margin: 5vw auto 15vw;
+    .contentBox {
+        position: relative;
+        width: 100%;
+        margin: 5vw auto 10vw;
 
-            >.left,
-            .right {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 36.5%;
+        >div {
+            width: 100%;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            top: 0;
+            opacity: 0;
+            transition: 0.6s;
 
-                .titleBox {
-                    display: flex;
-                    margin-bottom: 1.2vw;
+            @include tablet() {
+                width: 82.5%;
+            }
 
-                    img {
-                        width: pxConvertor(22);
-                        margin-right: 0.5vw;
+            .second-page {
+                .top {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                    top: -16vw;
+
+                    @include tablet() {
+                        position: static;
+                        margin-bottom: 5vw;
                     }
 
-                    h4 {
-                        font-size: pxConvertor(24);
-                        letter-spacing: 0.15em;
-                        color: #333;
-                        font-weight: 400;
+                    .paraBox {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        margin-top: 1.5vw;
 
-                    }
-                }
+                        .title {
+                            position: relative;
+                            font-size: var(--ch_mml_text);
+                            letter-spacing: 0.1em;
+                            font-weight: 500;
+                            margin-bottom: 2vw;
 
-                .paraBox {
-                    p {
-                        position: relative;
-                        font-size: pxConvertor(20);
-                        color: #333;
-                        letter-spacing: 0.15em;
-                        line-height: 1.6;
-
-                        &:not(:last-child) {
-                            margin-bottom: 0.8vw;
+                            &::after {
+                                display: block;
+                                content: "";
+                                position: absolute;
+                                left: 0;
+                                right: 0;
+                                margin: 0 auto;
+                                width: 4.5vw;
+                                height: 1px;
+                                background-color: #000;
+                                bottom: -0.8vw;
+                            }
                         }
 
-                        &::after {
-                            display: block;
-                            content: "";
-                            position: absolute;
-                            left: -0.8vw;
-                            top: 0.8em;
-                            width: 0.2vw;
-                            height: 0.2vw;
-                            border-radius: 50%;
-                            background-color: #333;
+                        .para {
+                            @include para();
+                            font-size: var(--ch_xs_text);
+                            width: pxConvertor(415);
+                            margin-bottom: 1vw;
+                            color: #333;
                             opacity: 0.8;
+                            text-align: center;
+
+                            @include tablet() {
+                                font-size: var(--ch_m_text);
+                                width: 100%;
+                                font-weight: 500;
+                            }
                         }
+
+
                     }
                 }
-            }
-
-            .top {
-                position: absolute;
-                left: 0;
-                right: 0;
-                margin: 0 auto;
-                top: -16vw;
-
-                .paraBox {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    margin-top: 1.5vw;
-
-                    .title {
-                        position: relative;
-                        font-size: var(--ch_mml_text);
-                        letter-spacing: 0.1em;
-                        font-weight: 500;
-                        margin-bottom: 2vw;
-
-                        &::after {
-                            display: block;
-                            content: "";
-                            position: absolute;
-                            left: 0;
-                            right: 0;
-                            margin: 0 auto;
-                            width: 4.5vw;
-                            height: 1px;
-                            background-color: #000;
-                            bottom: -0.6vw;
-                        }
-                    }
-
-                    .para {
-                        @include para();
-                        font-size: var(--ch_xs_text);
-                        width: pxConvertor(415);
-                        margin-bottom: 1vw;
-                        color: #333;
-                        opacity: 0.8;
-                        text-align: center;
-                    }
-
-
-                }
-            }
-
-            .contact-box {
-                position: absolute;
-                left: 0;
-                bottom: -7vw;
-
-                .service-online {
-                    font-size: var(--ch_s_text);
-                    color: #333;
-                    opacity: 0.8;
-                    font-weight: 500;
-                    letter-spacing: 0.1em;
-                    margin-bottom: 0.5vw;
-
-                    span {
-                        font-size: pxConvertor(14);
-                        font-weight: 400;
-                    }
-                }
-
-                .service-time,
-                .phone {
-                    display: inline-block;
-                    @include para();
-                    font-size: var(--ch_xs_text);
-                    color: #333;
-                    opacity: 0.8;
-                    line-height: 1.8;
-                }
-
-                .phone {
-                    margin-left: 2vw;
-                }
-            }
-
-            &::after {
-                display: block;
-                content: "";
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 0;
-                bottom: 0;
-                margin: auto;
-                width: 1.5px;
-                height: 115%;
-                background-color: #333;
-                opacity: 0.15;
             }
         }
 
-        .third-page {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            margin-bottom: 6.5vw;
+        .repair {
 
-            .title {
-                font-size: pxConvertor(24);
+            .second-page {
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                width: 52.5%;
+                margin: 0 auto 10vw;
+
+                >.left,
+                .right {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 36.5%;
+
+                    .titleBox {
+                        display: flex;
+                        margin-bottom: 1.2vw;
+
+                        img {
+                            width: pxConvertor(22);
+                            margin-right: 0.5vw;
+                        }
+
+                        h4 {
+                            font-size: pxConvertor(24);
+                            letter-spacing: 0.15em;
+                            color: #333;
+                            font-weight: 400;
+
+                        }
+                    }
+
+                    .paraBox {
+                        p {
+                            position: relative;
+                            font-size: pxConvertor(20);
+                            color: #333;
+                            letter-spacing: 0.15em;
+                            line-height: 1.6;
+
+                            &:not(:last-child) {
+                                margin-bottom: 0.8vw;
+                            }
+
+                            &::after {
+                                display: block;
+                                content: "";
+                                position: absolute;
+                                left: -0.8vw;
+                                top: 0.8em;
+                                width: 0.2vw;
+                                height: 0.2vw;
+                                border-radius: 50%;
+                                background-color: #333;
+                                opacity: 0.8;
+                            }
+                        }
+                    }
+                }
+
+
+
+                .contact-box {
+                    position: absolute;
+                    left: 0;
+                    bottom: -7vw;
+
+                    .service-online {
+                        font-size: var(--ch_s_text);
+                        color: #333;
+                        opacity: 0.8;
+                        font-weight: 500;
+                        letter-spacing: 0.1em;
+                        margin-bottom: 0.5vw;
+
+                        span {
+                            font-size: pxConvertor(14);
+                            font-weight: 400;
+                        }
+                    }
+
+                    .service-time,
+                    .phone {
+                        display: inline-block;
+                        @include para();
+                        font-size: var(--ch_xs_text);
+                        color: #333;
+                        opacity: 0.8;
+                        line-height: 1.8;
+                    }
+
+                    .phone {
+                        margin-left: 2vw;
+                    }
+                }
+
+                &::after {
+                    display: block;
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                    width: 1.5px;
+                    height: 115%;
+                    background-color: #333;
+                    opacity: 0.15;
+                }
+            }
+
+            .third-page {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+
+                .title {
+                    font-size: pxConvertor(24);
+                    letter-spacing: 0.15em;
+                    color: #333;
+                    font-weight: 600;
+                    margin-bottom: 5vw;
+                }
+
+                img {
+                    width: 65%;
+                    height: auto;
+                }
+
+            }
+        }
+
+        .assurance {
+
+            .bottom {
+                display: flex;
+                justify-content: center;
+                margin-top: 2vw;
+
+                img {
+                    position: relative;
+                    z-index: 1;
+                    width: pxConvertor(1207.3);
+                    height: auto;
+
+                }
+
+                .sign {
+                    position: absolute;
+                    right: 0;
+                    bottom: -10vw;
+                    width: pxConvertor(709);
+                    height: auto;
+                    z-index: 0;
+                }
+            }
+        }
+
+        .contact {
+
+            .second-page {
+                .top {
+                    .paraBox {
+                        .para {
+                            width: pxConvertor(595);
+
+                            @include tablet() {
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+
+            .bottom {
+                display: flex;
+                justify-content: center;
+
+                form {
+                    width: pxConvertor(595);
+
+                    @include tablet() {
+                        width: 100%;
+                    }
+
+                    .formBox {
+                        display: flex;
+                        width: 100%;
+
+                        label {
+                            font-size: var(--ch_s_text);
+                            color: #333;
+                            letter-spacing: 2em;
+                        }
+
+                        input,
+                        textarea {
+                            flex-grow: 1;
+                            background-color: transparent;
+                            border: none;
+                            border-bottom: 1px solid #6666669c;
+                        }
+
+                        &:not(:last-child) {
+                            margin-bottom: 2vw;
+
+                            @include tablet() {
+                                margin-bottom: 6vw;
+                            }
+                        }
+                    }
+
+                    button {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: pxConvertor(298.8);
+                        height: pxConvertor(38.5);
+                        background-color: #6b8786;
+                        color: #fff;
+                        font-size: pxConvertor(14);
+                        letter-spacing: 0.05em;
+                        border: none;
+                        margin: 3.5vw auto 0;
+                        cursor: pointer;
+                        transition: 0.3s;
+
+                        @include tablet() {
+                            width: pxConvertor2(259);
+                            height: pxConvertor2(63.5);
+                            font-size: pxConvertor2(28);
+                        }
+
+                        &:hover {
+                            width: pxConvertor(180);
+                        }
+                    }
+                }
+            }
+        }
+
+        .active {
+            opacity: 1;
+        }
+
+        .gradient-square {
+            z-index: 10;
+
+            .box {
+                &:nth-child(1) {
+                    width: pxConvertor(122);
+                    height: pxConvertor(235);
+                    top: pxConvertor(364);
+                    left: pxConvertor(10);
+
+                    @include tablet() {
+                        width: pxConvertor2(68.9);
+                        height: pxConvertor2(268.7);
+                        top: -30vw;
+                        left: -8.5vw;
+                    }
+
+                }
+
+                &:nth-child(2) {
+                    width: pxConvertor(237.25);
+                    height: pxConvertor(457);
+                    top: pxConvertor(211);
+                    left: pxConvertor(76);
+
+                    @include tablet() {
+                        width: pxConvertor2(105.7);
+                        height: pxConvertor2(203.63);
+                        top: 18vw;
+                        left: auto;
+                        right: -8.5vw;
+                    }
+                }
+
+                &:nth-child(3) {
+                    width: pxConvertor(90.33);
+                    height: pxConvertor(174);
+                    top: pxConvertor(579);
+                    left: pxConvertor(561);
+
+                    @include tablet() {
+                        display: none;
+                    }
+                }
+
+                &:nth-child(4) {
+                    width: pxConvertor(90.33);
+                    height: pxConvertor(174);
+                    top: pxConvertor(624);
+                    left: pxConvertor(614);
+
+                    @include tablet() {
+                        display: none;
+                    }
+                }
+
+                &:nth-child(5) {
+                    width: pxConvertor(114.33);
+                    height: pxConvertor(220.23);
+                    top: pxConvertor(661);
+                    left: pxConvertor(1716);
+
+                    @include tablet() {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    .navBox {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        margin: auto 0;
+        left: 2vw;
+        height: 10vw;
+
+        li {
+            cursor: pointer;
+
+            p {
+                color: #6A6A6B;
+                font-size: pxConvertor(20);
                 letter-spacing: 0.15em;
-                color: #333;
-                font-weight: 600;
-                margin-bottom: 5vw;
+                transition: 0.3s;
+                pointer-events: none;
+
+                @include tablet() {
+                    font-size: pxConvertor2(22);
+                }
+
+                span {
+                    font-size: pxConvertor(16);
+                    font-family: 'Cormorant Garamond', serif;
+                    letter-spacing: 0;
+
+                    @include tablet() {
+                        font-size: pxConvertor2(18);
+                    }
+                }
             }
 
-            img {
-                width: 65%;
-                height: auto;
-            }
+            &:not(:last-child) {
+                margin-bottom: 1.2vw;
 
+                @include tablet() {
+                    margin-bottom: 3.5vw;
+                }
+            }
+        }
+
+        .active {
+            p {
+                color: #6B8786;
+            }
         }
     }
 

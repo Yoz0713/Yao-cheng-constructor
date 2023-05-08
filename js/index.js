@@ -226,10 +226,7 @@ window.onload = function () {
         }).to(".first-page .banner-paraBox ", {
             opacity: 1,
             duration: 0.3,
-        }, "<+1.8").to("#particles-js", {
-            opacity: 1,
-            duration: 0.3,
-        }, "<+0.4").from(".first-page h2 span", {
+        }, "<+1.8").from(".first-page h2 span", {
             x: 80,
             duration: 0.6,
             stagger: 0.012
@@ -268,7 +265,8 @@ window.onload = function () {
                 start: "top bottom",
                 scrub: 1,
                 end: `+=${window.innerHeight}`,
-                toggleActions: "play none none reverse"
+                toggleActions: "play none none reverse",
+                ignoreMobileResize: true
             },
             force3D: true, // 触发硬件加速
         });
@@ -280,10 +278,7 @@ window.onload = function () {
             opacity: 0,
             y: -window.innerHeight / 2,
             duration: 500 / window.innerHeight
-        }).to("#particles-js", {
-            opacity: 0,
-            duration: 0.2
-        }, "<").to(canvases1, {
+        }).to(canvases1, {
             y: (index, target) => {
                 let yDistance;
                 if (index >= Math.round(blocksNum.x / 2)) {
@@ -655,12 +650,12 @@ window.onload = function () {
     }
     pageAnimation()
 
-    function particles() {
-        particlesJS.load('particles-js', './js/particlesjs-config.json', function () {
-            console.log('callback - particles.js config loaded',);
-        });
-    }
-    particles()
+    // function particles() {
+    //     particlesJS.load('particles-js', './js/particlesjs-config.json', function () {
+    //         console.log('callback - particles.js config loaded',);
+    //     });
+    // }
+    // particles()
 }
 
 

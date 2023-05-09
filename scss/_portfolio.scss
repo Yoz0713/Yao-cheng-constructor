@@ -1,0 +1,17 @@
+.portfolio {
+    width: 100%;
+    padding: 10vw 0;
+
+    @include tablet() {
+        padding: 25vw 0;
+    }
+
+    img {
+        width: 87.5%;
+        height: auto;
+
+        @include tablet() {
+            margin: 0 auto;
+        }
+    }
+}

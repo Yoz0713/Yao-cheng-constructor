@@ -30,12 +30,12 @@
                 letter-spacing: 0.1em;
                 color: #333333;
                 opacity: 0.8;
-                font-weight: 600;
+                font-weight: 500;
             }
 
             .title {
                 font-size: var(--ch_m_text);
-                font-weight: 800;
+                font-weight: 700;
                 letter-spacing: 0.1em;
                 margin: 0.3vw 0 1.5vw;
                 color: #333333;
@@ -45,7 +45,6 @@
         .paraBox {
             p {
                 @include para();
-                opacity: 0.6;
 
                 &:not(:last-child) {
                     margin-bottom: 1.6vw;

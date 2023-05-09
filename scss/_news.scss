@@ -1,96 +1,6 @@
 .news {
     width: 100%;
 
-    .first-page {
-        position: relative;
-        width: 100%;
-        height: 50.5vw;
-        margin-top: 2vw;
-
-        .titleBox {
-            position: absolute;
-            top: pxConvertor(373);
-            left: pxConvertor(265);
-
-            width: fit-content;
-
-            p {
-                font-size: var(--ch_mml_text);
-                letter-spacing: 0.1em;
-                font-weight: 600;
-            }
-        }
-
-        &-bg {
-            position: relative;
-            width: 100%;
-            height: 100%;
-
-            .imgBox {
-                position: absolute;
-                width: pxConvertor(292);
-                height: pxConverotor(436);
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-
-                &:nth-child(1) {
-                    left: pxConvertor(966);
-                    top: pxConvertor(195);
-                }
-
-                &:nth-child(2) {
-                    left: pxConvertor(1284);
-                    top: pxConvertor(275);
-                }
-            }
-
-            .gradient-square {
-
-                .box {
-                    &:nth-child(1) {
-                        width: pxConvertor(122);
-                        height: pxConvertor(235);
-                        top: pxConvertor(364);
-                        left: pxConvertor(10);
-
-
-                    }
-
-                    &:nth-child(2) {
-                        width: pxConvertor(237.25);
-                        height: pxConvertor(457);
-                        top: pxConvertor(211);
-                        left: pxConvertor(76);
-                    }
-
-                    &:nth-child(3) {
-                        width: pxConvertor(90.33);
-                        height: pxConvertor(174);
-                        top: pxConvertor(579);
-                        left: pxConvertor(561);
-                    }
-
-                    &:nth-child(4) {
-                        width: pxConvertor(90.33);
-                        height: pxConvertor(174);
-                        top: pxConvertor(624);
-                        left: pxConvertor(614);
-                    }
-
-                    &:nth-child(5) {
-                        width: pxConvertor(114.33);
-                        height: pxConvertor(220.23);
-                        top: pxConvertor(661);
-                        left: pxConvertor(1716);
-                    }
-                }
-            }
-        }
-    }
 
     .second-page {
         position: relative;
@@ -118,7 +28,7 @@
 
                 .paraBox {
                     position: relative;
-                    width: 95%;
+                    width: 100%;
                     margin: 0 auto;
                     margin-top: 1vw;
 
@@ -141,13 +51,14 @@
                     .para {
                         width: pxConvertor(768);
                         @include para();
-                        opacity: 0.6;
+                        font-weight: 500;
+                        line-height: 1.6;
                     }
 
                     .more {
                         position: absolute;
                         right: 0;
-                        bottom: 0;
+                        bottom: 0.8vw;
                         overflow: hidden;
                         padding-top: 1vw;
                         cursor: pointer;
@@ -163,9 +74,9 @@
                             display: block;
                             content: "";
                             position: absolute;
-                            left: 20%;
+                            left: 0%;
                             top: 0.5vw;
-                            width: 80%;
+                            width: 100%;
                             height: 1px;
                             background-color: rgba(0, 0, 0, 0.5);
                             transition: 0.5s;

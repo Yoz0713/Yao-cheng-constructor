@@ -1,0 +1,67 @@
+.about {
+    width: 100%;
+
+    .navBox {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        margin: auto 0;
+        left: 2vw;
+        height: 10vw;
+        z-index: 30;
+
+        li {
+            cursor: pointer;
+
+            p {
+                color: #6A6A6B;
+                font-size: pxConvertor(20);
+                letter-spacing: 0.15em;
+                transition: 0.3s;
+                pointer-events: none;
+
+                @include tablet() {
+                    font-size: pxConvertor2(22);
+                }
+
+                span {
+                    font-size: pxConvertor(16);
+                    font-family: 'Cormorant Garamond', serif;
+                    letter-spacing: 0;
+
+                    @include tablet() {
+                        font-size: pxConvertor2(18);
+                    }
+                }
+            }
+
+            &:not(:last-child) {
+                margin-bottom: 1.2vw;
+
+                @include tablet() {
+                    margin-bottom: 3.5vw;
+                }
+            }
+        }
+
+        .active {
+            p {
+                color: #6B8786;
+            }
+        }
+    }
+
+    .contentBox {
+        >div {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .active {
+            opacity: 1;
+        }
+    }
+}

@@ -258,7 +258,7 @@ window.onload = function () {
         })
     }
     function bannerOutAnimation() {
-
+        ScrollTrigger.config({ ignoreMobileResize: true });
         let bannerOut = gsap.timeline({
             scrollTrigger: {
                 trigger: ".second-page",
@@ -266,7 +266,7 @@ window.onload = function () {
                 scrub: 1,
                 end: `+=${window.innerHeight}`,
                 toggleActions: "play none none reverse",
-                ignoreMobileResize: true
+
             },
             force3D: true, // 触发硬件加速
         });

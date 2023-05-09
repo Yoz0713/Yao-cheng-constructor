@@ -21,17 +21,17 @@
             <img src="./img/index/SVG/header-logo.svg">
         </a>
         <ul>
-            <a href="javascript:;">
+            <a href="./about.html">
                 <li>耀幸福</li>
             </a>
-            <a href="javascript:;">
+            <a href="./project.html">
 
                 <li>耀鑑賞</li>
             </a>
             <a href="./news.html">
                 <li>耀未來</li>
             </a>
-            <a href="javascript:;">
+            <a href="./portfolio.html">
 
                 <li>耀建築</li>
             </a>
@@ -167,9 +167,9 @@
             <li data-content="repair">
                 <p>修繕流程 <span>REPAIR</span></p>
             </li>
-            <li data-content="calculator">
+            <!-- <li data-content="calculator">
                 <p>房貸試算 <span>CALCULATOR</span></p>
-            </li>
+            </li> -->
             <li data-content="contact">
                 <p>聯絡我們 <span>CONTACT</span></p>
             </li>
@@ -235,6 +235,9 @@
                         }
                     })
                 })
+                window.onresize = () => {
+                    contentBox.style.height = document.querySelector(".contentBox > .active").clientHeight + "px"
+                }
             }
             navBox()
         }

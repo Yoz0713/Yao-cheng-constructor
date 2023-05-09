@@ -130,7 +130,22 @@
                 &:first-child {
                     display: none;
                 }
+            }
 
+            .addCanvas:nth-of-type(4n+2) {
+                z-index: 1;
+            }
+
+            .addCanvas:nth-of-type(4n+3) {
+                z-index: 2;
+            }
+
+            .addCanvas:nth-of-type(4n+4) {
+                z-index: 3;
+            }
+
+            .addCanvas:nth-of-type(4n+5) {
+                z-index: 4;
             }
         }
 
@@ -140,6 +155,7 @@
             top: 33vh;
             color: #1a1a1a;
             opacity: 0;
+            z-index: 6;
 
             @include tablet() {
                 padding: 6vw 0;

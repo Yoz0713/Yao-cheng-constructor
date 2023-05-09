@@ -10,7 +10,17 @@
         height: 10vw;
         z-index: 30;
 
+        @include tablet() {
+            display: flex;
+            position: static;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            margin: 5vw 0;
+        }
+
         li {
+            position: relative;
             cursor: pointer;
 
             p {
@@ -21,7 +31,10 @@
                 pointer-events: none;
 
                 @include tablet() {
-                    font-size: pxConvertor2(22);
+                    font-size: var(--ch_m_text);
+                    font-weight: 600;
+                    color: #000;
+                    margin-bottom: 0.2vw;
                 }
 
                 span {
@@ -30,7 +43,7 @@
                     letter-spacing: 0;
 
                     @include tablet() {
-                        font-size: pxConvertor2(18);
+                        display: none;
                     }
                 }
             }
@@ -39,9 +52,27 @@
                 margin-bottom: 1.2vw;
 
                 @include tablet() {
-                    margin-bottom: 3.5vw;
+                    margin-bottom: 0;
+                    margin-right: 5vw;
+                }
+
+                &::after {
+                    @include tablet() {
+                        display: block;
+                        position: absolute;
+                        content: "";
+                        top: 0;
+                        bottom: 0;
+                        margin: auto 0;
+                        right: -2.5vw;
+                        width: 1px;
+                        height: 60%;
+                        background-color: #000;
+                    }
                 }
             }
+
+
         }
 
         .active {
@@ -76,6 +107,12 @@
         }
 
         .concept {
+            img {
+                width: 100%;
+            }
+        }
+
+        .vision {
             img {
                 width: 100%;
             }

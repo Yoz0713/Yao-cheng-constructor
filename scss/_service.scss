@@ -53,6 +53,7 @@
 
                             @include tablet() {
                                 margin-bottom: 4.5vw;
+                                font-size: var(--ch_ml_text);
                             }
 
                             &::after {
@@ -80,7 +81,6 @@
                             width: pxConvertor(415);
                             margin-bottom: 1vw;
                             color: #333;
-                            opacity: 0.8;
                             text-align: center;
 
                             @include tablet() {
@@ -105,6 +105,11 @@
                 width: 52.5%;
                 margin: 0 auto 10vw;
 
+                @include tablet() {
+                    display: block;
+                    width: 100%;
+                }
+
                 >.left,
                 .right {
                     display: flex;
@@ -112,13 +117,29 @@
                     align-items: center;
                     width: 36.5%;
 
+                    @include tablet() {
+                        width: 100%;
+                        margin-bottom: 7vw;
+                    }
+
                     .titleBox {
                         display: flex;
                         margin-bottom: 1.2vw;
 
+                        @include tablet() {
+                            align-items: center;
+                            margin-bottom: 6vw;
+                        }
+
                         img {
                             width: pxConvertor(22);
                             margin-right: 0.5vw;
+
+                            @include tablet() {
+                                width: pxConvertor2(42);
+                                margin-right: 1.5vw;
+
+                            }
                         }
 
                         h4 {
@@ -126,6 +147,11 @@
                             letter-spacing: 0.15em;
                             color: #333;
                             font-weight: 400;
+
+                            @include tablet() {
+                                font-size: var(--ch_ml_text);
+                                font-weight: 600;
+                            }
 
                         }
                     }
@@ -137,6 +163,12 @@
                             color: #333;
                             letter-spacing: 0.15em;
                             line-height: 1.6;
+
+                            @include tablet() {
+                                font-size: var(--ch_m_text);
+                                font-weight: 400;
+                                font-family: "Microsoft JhengHei", serif;
+                            }
 
                             &:not(:last-child) {
                                 margin-bottom: 0.8vw;
@@ -152,7 +184,12 @@
                                 height: 0.2vw;
                                 border-radius: 50%;
                                 background-color: #333;
-                                opacity: 0.8;
+
+                                @include tablet() {
+                                    width: 1vw;
+                                    height: 1vw;
+                                    left: -2vw;
+                                }
                             }
                         }
                     }
@@ -165,17 +202,32 @@
                     left: 0;
                     bottom: -7vw;
 
+                    @include tablet() {
+                        position: static;
+                    }
+
                     .service-online {
                         font-size: var(--ch_s_text);
                         color: #333;
-                        opacity: 0.8;
                         font-weight: 500;
                         letter-spacing: 0.1em;
                         margin-bottom: 0.5vw;
 
+                        @include tablet() {
+                            font-size: var(--ch_ml_text);
+                            opacity: 1;
+                            text-align: center;
+                            margin-bottom: 4vw;
+                        }
+
                         span {
                             font-size: pxConvertor(14);
                             font-weight: 400;
+
+                            @include tablet() {
+                                display: block;
+                                font-size: var(--ch_m_text);
+                            }
                         }
                     }
 
@@ -185,12 +237,20 @@
                         @include para();
                         font-size: var(--ch_xs_text);
                         color: #333;
-                        opacity: 0.8;
                         line-height: 1.8;
+
+                        @include tablet() {
+                            font-size: var(--ch_m_text);
+                            white-space: nowrap;
+                        }
                     }
 
                     .phone {
                         margin-left: 2vw;
+
+                        @include tablet() {
+                            margin: 0;
+                        }
                     }
                 }
 
@@ -207,6 +267,10 @@
                     height: 115%;
                     background-color: #333;
                     opacity: 0.15;
+
+                    @include tablet() {
+                        display: none;
+                    }
                 }
             }
 
@@ -222,11 +286,20 @@
                     color: #333;
                     font-weight: 600;
                     margin-bottom: 5vw;
+
+                    @include tablet() {
+                        font-size: var(--ch_ml_text);
+                        margin-bottom: 10vw;
+                    }
                 }
 
                 img {
                     width: 65%;
                     height: auto;
+
+                    @include tablet() {
+                        width: 100%;
+                    }
                 }
 
             }
@@ -254,6 +327,10 @@
                     width: pxConvertor(709);
                     height: auto;
                     z-index: 0;
+
+                    @include tablet() {
+                        display: none;
+                    }
                 }
             }
         }
@@ -415,7 +492,17 @@
         height: 10vw;
         z-index: 30;
 
+        @include tablet() {
+            display: flex;
+            position: static;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            margin: 5vw 0;
+        }
+
         li {
+            position: relative;
             cursor: pointer;
 
             p {
@@ -426,7 +513,10 @@
                 pointer-events: none;
 
                 @include tablet() {
-                    font-size: pxConvertor2(22);
+                    font-size: var(--ch_m_text);
+                    font-weight: 600;
+                    color: #000;
+                    margin-bottom: 0.2vw;
                 }
 
                 span {
@@ -435,7 +525,7 @@
                     letter-spacing: 0;
 
                     @include tablet() {
-                        font-size: pxConvertor2(18);
+                        display: none;
                     }
                 }
             }
@@ -444,9 +534,27 @@
                 margin-bottom: 1.2vw;
 
                 @include tablet() {
-                    margin-bottom: 3.5vw;
+                    margin-bottom: 0;
+                    margin-right: 5vw;
+                }
+
+                &::after {
+                    @include tablet() {
+                        display: block;
+                        position: absolute;
+                        content: "";
+                        top: 0;
+                        bottom: 0;
+                        margin: auto 0;
+                        right: -2.5vw;
+                        width: 1px;
+                        height: 60%;
+                        background-color: #000;
+                    }
                 }
             }
+
+
         }
 
         .active {

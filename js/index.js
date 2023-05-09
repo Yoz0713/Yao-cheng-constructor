@@ -13,7 +13,7 @@ window.onload = function () {
     if (window.innerWidth > 820) {// 電腦版圖片
         images = ['./img/index/webp/first-page-banner1.webp', './img/index/jpg/banner-bg2.jpg', './img/index/jpg/banner-bg3.jpg'];
     } else {//手機板圖片
-        images = ['./img/index/jpg/banner-bg4.jpg'];
+        images = ['./img/index/jpg/banner-bg4.png'];
     }
     let index = 0;
     let isAnimating = false;
@@ -543,8 +543,8 @@ window.onload = function () {
                 y: 0,
                 x: 0
             }, {
-                y: "-150vw",
-                x: "-10vw"
+                y: "-180vw",
+                x: "-20vw"
             }, "<").fromTo(canvases4[0], {
                 y: 0,
                 x: 0
@@ -589,7 +589,6 @@ window.onload = function () {
                 x: "20vw"
             }, "<+0.1")
         }
-
     }
 
 
@@ -699,7 +698,7 @@ window.onload = function () {
         let thirdPage = gsap.timeline({
             scrollTrigger: {
                 trigger: ".third-page",
-                start: "top 60%",
+                start: "top 80%",
                 toggleActions: "play none none reverse",
             }
         })

@@ -146,6 +146,10 @@
 
             .addCanvas:nth-of-type(4n+5) {
                 z-index: 4;
+
+                @include tablet() {
+                    display: none;
+                }
             }
         }
 

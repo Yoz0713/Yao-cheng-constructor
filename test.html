@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .first-page,
+    .second-page {
+        width: 100%;
+        height: 220vw;
+    }
+</style>
+
+<body>
+    <div class="first-page">
+
+    </div>
+    <div class="second-page">
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js"></script>
+    <script>
+
+
+        function pixiSplit() {
+            const container = document.querySelector(".first-page")
+            //pixi設定
+            let app = new PIXI.Application({
+                width: container.clientWidth,
+                height: container.clientHeight,
+                antialias: true,    // default: false
+                transparent: false, // default: false
+                resolution: 1,      // default: 1
+                autoResize: true
+            });
+            window.onresize = () => {
+                app.renderer.resize(container.clientWidth, container.clientHeight);
+            }
+            container.appendChild(app.view);
+
+            //圖片種類
+            if (window.innerWidth > 820) {// 電腦版圖片
+                images = ['./img/index/webp/first-page-banner1.webp', './img/index/jpg/banner-bg2.jpg', './img/index/jpg/banner-bg3.jpg'];
+            } else {//手機板圖片
+                images = ['./img/index/jpg/banner-bg4.png'];
+            }
+
+
+            //切圖片
+            const gap = 6;
+            const blocksNum = {
+                x: window.innerWidth > 820 ? 10 : 3,
+                y: 4
+            }
+            const sprite = PIXI.Sprite.from('./img/index/webp/first-page-banner2.webp');
+
+            let standardHeight = (app.view.height - gap * (blocksNum.y - 1)) / blocksNum.y
+            let standardWidth = (app.view.width - gap * (blocksNum.x - 1)) / blocksNum.x
+            let longHeight = (app.view.height - gap * (blocksNum.y - 1) - standardHeight) / (blocksNum.y - 2);
+            function onLoad() {
+
+                for (let i = 0; i < blocksNum.x + 1; i++) {
+                    for (let j = 0; j < blocksNum.y; j++) {
+                        if (j == 0) {
+                            const texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle(i * standardWidth + gap * i, j, standardWidth, standardHeight));
+                            const croppedSprite = new PIXI.Sprite(texture);
+                            const container = new PIXI.Container();
+                            container.addChild(croppedSprite);
+                            container.position.x = i * standardWidth + gap * i;
+                            container.position.y = j * (standardHeight + gap);
+                            app.stage.addChild(container);
+                        } else if (j == 1) {
+                            const texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle(i == 0 ? 0 : (i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap) - gap * (i - 1), j * gap + j * standardHeight, i == 0 ? standardWidth / 2 : standardWidth, longHeight));
+                            const croppedSprite = new PIXI.Sprite(texture);
+                            const container = new PIXI.Container();
+                            container.addChild(croppedSprite);
+                            container.position.x = i == 0 ? 0 : (i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap);
+                            container.position.y = j * (standardHeight + gap);
+                            app.stage.addChild(container);
+                        } else if (j == 2) {
+                            const texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle(i * standardWidth + gap * i, j * gap + standardHeight + longHeight, standardWidth, longHeight));
+                            const croppedSprite = new PIXI.Sprite(texture);
+                            const container = new PIXI.Container();
+                            container.addChild(croppedSprite);
+                            container.position.x = i * standardWidth + gap * i;
+                            container.position.y = j * gap + longHeight + standardHeight;
+                            app.stage.addChild(container);
+                        }
+                    }
+                }
+                let gg = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: '.second-page',
+                        start: "top 95%",
+                        scrub: 1
+                    }
+                })
+                gg.to(app.stage.children[0], {
+                    x: -window.innerWidth / 2,
+                    y: -window.innerWidth * 1.2,
+                }).to(app.stage.children[3], {
+                    x: -window.innerWidth / 10,
+                    y: -window.innerWidth * 2,
+                }, "<").to(app.stage.children[6], {
+                    x: window.innerWidth / 2,
+                    y: -window.innerWidth * 2,
+                }, "<").to(app.stage.children[1], {
+                    x: -window.innerWidth / 2,
+                    y: -window.innerWidth * 1,
+                }, "<").to(app.stage.children[4], {
+                    x: -window.innerWidth / 10,
+                    y: -window.innerWidth * 2,
+                }, "<").to(app.stage.children[7], {
+                    x: window.innerWidth / 1.5,
+                    y: -window.innerWidth * 1.7,
+                }, "<").to(app.stage.children[10], {
+                    x: window.innerWidth / 0.8,
+                    y: -window.innerWidth * 0.6,
+                }, "<").to(app.stage.children[2], {
+                    x: -window.innerWidth / 2,
+                    y: -window.innerWidth * 0.4,
+                }, "<").to(app.stage.children[5], {
+                    x: window.innerWidth / 3,
+                    y: -window.innerWidth * 1.7,
+                }, "<").to(app.stage.children[8], {
+                    x: window.innerWidth / 1.2,
+                    y: -window.innerWidth * 0.4,
+                }, "<")
+
+            }
+            onLoad()
+        }
+        pixiSplit()
+    </script>
+</body>
+
+</html>

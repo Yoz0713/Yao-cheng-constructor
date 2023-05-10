@@ -680,6 +680,11 @@
 .index .first-page .canvas-container .addCanvas:nth-of-type(4n+5) {
   z-index: 4;
 }
+@media all and (max-width: 820px) {
+  .index .first-page .canvas-container .addCanvas:nth-of-type(4n+5) {
+    display: none;
+  }
+}
 .index .first-page .banner-paraBox {
   position: absolute;
   right: 10vw;

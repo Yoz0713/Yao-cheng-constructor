@@ -15,30 +15,19 @@ window.onload = function () {
     } else {//手機板圖片
         images = ['./img/index/jpg/banner-bg4.png'];
     }
-    let index = 0;
-    let isAnimating = false;
     //第一cut方塊切割數量 = blocksNum.x * blocksNum.y
     const gap = 6;
     const blocksNum = {
         x: window.innerWidth > 820 ? 10 : 3,
         y: 4
     }
-    function loadNextImage(flag = true) {
-        if (isAnimating) {
-            return;
-        }
-
-        isAnimating = true;
+    function loadNextImage() {
 
         // 獲取下一張圖片的url
         let imageUrl
-        if (flag) {
-            let random = Math.floor(Math.random() * images.length);
+        let random = Math.floor(Math.random() * images.length);
+        imageUrl = images[random];
 
-            imageUrl = images[random];
-        } else {
-            imageUrl = images[index];
-        }
 
 
         // 創建新的圖像對象
@@ -150,59 +139,8 @@ window.onload = function () {
 
                 }
             }
-            if (flag) {
-                bannerAnimation()
-                bannerOutAnimation()
-            }
-            // 設置canvas的寬度和高度
-            // window.onresize = () => {
-            //     const addCanvas = document.querySelectorAll(".addCanvas")
-            //     ctx.clearRect(0, 0, canvas.width, canvas.height);
-            //     // 繪制圖像
-            //     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-            //     let imageData;
-            //     const imageDataArr = [];
-            //     canvas.width = window.innerWidth;
-            //     canvas.height = canvasContainer.clientHeight;
-            //     const gap = 3;
-            //     standardHeight = (canvas.height - gap * 2) * 5 / 18
-            //     standardWidth = (canvas.width - gap * 9) / 10
-            //     longHeight = canvas.height - (standardHeight * 2) - gap * 2
-            //     for (let i = 0; i < 11; i++) {
-            //         for (let j = 0; j < 3; j++) {
-            //             addCanvas.width = standardWidth;
-            //             if (j == 1) {
-            //                 // 獲取區塊的像素數據
-            //                 if (i == 0) {
-            //                     imageData = ctx.getImageData(0, standardHeight + gap, standardWidth / 2, longHeight);
-            //                 } else if (i == 6) {
-            //                     imageData = ctx.getImageData((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap), standardHeight + gap, standardWidth * 4, longHeight);
-            //                 } else {
-            //                     imageData = ctx.getImageData((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap), standardHeight + gap, standardWidth, longHeight);
-            //                 }
-
-            //             } else {
-
-            //                 // 獲取區塊的像素數據
-            //                 if (j == 0) {
-            //                     imageData = ctx.getImageData(i * standardWidth + i * gap, j * standardHeight + j * gap, standardWidth, standardHeight);
-            //                 } else {
-            //                     imageData = ctx.getImageData(i * standardWidth + i * gap, standardHeight + longHeight + j * gap, standardWidth, standardHeight);
-            //                 }
-
-            //             }
-            //             // 繪制像素數據到對應的canvas元素上
-            //             imageDataArr.push(imageData)
-
-
-            //         }
-            //     }
-            //     console.log(imageDataArr)
-            //     for (let i = 0; i < imageDataArr.length; i++) {
-            //         const blockCtx = addCanvas[i].getContext('2d');
-            //         blockCtx.putImageData(imageDataArr[i], 0, 0);
-            //     }
-            // }
+            bannerAnimation()
+            bannerOutAnimation()
             window.onresize = () => {
                 if (window.innerWidth > 820) {
                     window.location.reload();
@@ -267,7 +205,6 @@ window.onload = function () {
                 scrub: 1,
                 end: `+=${window.innerHeight}`,
                 toggleActions: "play none none reverse",
-
             },
             force3D: true, // 触发硬件加速
         });
@@ -278,7 +215,6 @@ window.onload = function () {
         const canvases4 = gsap.utils.toArray('.addCanvas:nth-of-type(4n+5)');
         if (window.innerWidth > 820) {
             bannerOut.to(".banner-paraBox", {
-                opacity: 0,
                 y: -window.innerHeight / 2,
                 duration: 500 / window.innerHeight
             }).to(canvases1, {
@@ -505,91 +441,91 @@ window.onload = function () {
                 opacity: 0,
             }, "<")
         } else {
-            bannerOut.fromTo(canvases1[1], {
-                y: 0,
-                x: 0
-            }, {
-                y: "-220vw",
-                x: "0vw"
-            }).fromTo(canvases2[1], {
-                y: 0,
-                x: 0
-            }, {
-                y: "-220vw",
-                x: "-5vw"
-            }, "<").fromTo(canvases3[1], {
-                y: 0,
-                x: 0
-            }, {
-                y: "-180vw",
-                x: "0vw"
-            }, "<").fromTo(canvases4[1], {
-                y: 0,
-                x: 0
-            }, {
-                y: "-180vw",
-                x: "0vw"
-            }, "<").fromTo(canvases1[0], {
-                y: 0,
-                x: 0
-            }, {
-                y: "-220vw",
-                x: "-10vw"
-            }, "<+0.02").fromTo(canvases2[0], {
-                y: 0,
-                x: 0
-            }, {
-                y: "-220vw",
-                x: "-20vw"
-            }, "<+0.01").fromTo(canvases3[0], {
-                y: 0,
-                x: 0
-            }, {
-                y: "-180vw",
-                x: "-20vw"
-            }, "<").fromTo(canvases4[0], {
-                y: 0,
-                x: 0
-            }, {
-                y: "-150vw",
-                x: "-10vw"
-            }, "<").fromTo(canvases1[2], {
-                y: 0,
-                x: 0
-            }, {
-                y: "-220vw",
-                x: "10vw"
-            }, "<+0.015").fromTo(canvases2[2], {
-                y: 0,
-                x: 0
-            }, {
-                y: "-220vw",
-                x: "20vw"
-            }, "<").fromTo(canvases3[2], {
-                y: 0,
-                x: 0
-            }, {
-                y: "-120vw",
-                x: "10vw"
-            }, "<").fromTo(canvases4[2], {
-                y: 0,
-                x: 0
-            }, {
-                y: "-150vw",
-                x: "10vw"
-            }, "<").fromTo(canvases2[3], {
-                y: 0,
-                x: 0
-            }, {
-                y: "-180vw",
-                x: "40vw"
-            }, "<").fromTo(canvases4[3], {
-                y: 0,
-                x: 0
-            }, {
-                y: "-120vw",
-                x: "20vw"
-            }, "<+0.1")
+            // bannerOut.fromTo(canvases1[1], {
+            //     y: 0,
+            //     x: 0
+            // }, {
+            //     y: "-220vw",
+            //     x: "0vw"
+            // }).fromTo(canvases2[1], {
+            //     y: 0,
+            //     x: 0
+            // }, {
+            //     y: "-220vw",
+            //     x: "-5vw"
+            // }, "<").fromTo(canvases3[1], {
+            //     y: 0,
+            //     x: 0
+            // }, {
+            //     y: "-180vw",
+            //     x: "0vw"
+            // }, "<").fromTo(canvases4[1], {
+            //     y: 0,
+            //     x: 0
+            // }, {
+            //     y: "-180vw",
+            //     x: "0vw"
+            // }, "<").fromTo(canvases1[0], {
+            //     y: 0,
+            //     x: 0
+            // }, {
+            //     y: "-220vw",
+            //     x: "-10vw"
+            // }, "<+0.02").fromTo(canvases2[0], {
+            //     y: 0,
+            //     x: 0
+            // }, {
+            //     y: "-220vw",
+            //     x: "-20vw"
+            // }, "<+0.01").fromTo(canvases3[0], {
+            //     y: 0,
+            //     x: 0
+            // }, {
+            //     y: "-180vw",
+            //     x: "-20vw"
+            // }, "<").fromTo(canvases4[0], {
+            //     y: 0,
+            //     x: 0
+            // }, {
+            //     y: "-150vw",
+            //     x: "-10vw"
+            // }, "<").fromTo(canvases1[2], {
+            //     y: 0,
+            //     x: 0
+            // }, {
+            //     y: "-220vw",
+            //     x: "10vw"
+            // }, "<+0.015").fromTo(canvases2[2], {
+            //     y: 0,
+            //     x: 0
+            // }, {
+            //     y: "-220vw",
+            //     x: "20vw"
+            // }, "<").fromTo(canvases3[2], {
+            //     y: 0,
+            //     x: 0
+            // }, {
+            //     y: "-120vw",
+            //     x: "10vw"
+            // }, "<").fromTo(canvases4[2], {
+            //     y: 0,
+            //     x: 0
+            // }, {
+            //     y: "-150vw",
+            //     x: "10vw"
+            // }, "<").fromTo(canvases2[3], {
+            //     y: 0,
+            //     x: 0
+            // }, {
+            //     y: "-180vw",
+            //     x: "40vw"
+            // }, "<").fromTo(canvases4[3], {
+            //     y: 0,
+            //     x: 0
+            // }, {
+            //     y: "-120vw",
+            //     x: "20vw"
+            // }, "<+0.1")
         }
     }
 

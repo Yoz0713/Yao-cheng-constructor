@@ -31,6 +31,10 @@ body {
 /* 滾動條樣式 */
 ::-webkit-scrollbar {
     display: none;
+
+    @include tablet() {
+        display: block;
+    }
 }
 
 

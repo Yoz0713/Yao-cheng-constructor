@@ -22,12 +22,13 @@
 </style>
 
 <body>
+    <div class="second-page">
+
+    </div>
     <div class="first-page">
 
     </div>
-    <div class="second-page">
-        123
-    </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
@@ -103,8 +104,8 @@
                 }
                 let gg = gsap.timeline({
                     scrollTrigger: {
-                        trigger: '.second-page',
-                        start: "top 95%",
+                        trigger: '.first-page',
+                        start: "top center",
                         scrub: 1
                     }
                 })

@@ -19,16 +19,19 @@
         width: 100%;
         height: 220vw;
     }
+
+    canvas {
+        touch-action: pan-y !important;
+    }
 </style>
 
 <body>
-    <div class="second-page">
-
-    </div>
     <div class="first-page">
 
     </div>
+    <div class="second-page">
 
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
@@ -104,8 +107,8 @@
                 }
                 let gg = gsap.timeline({
                     scrollTrigger: {
-                        trigger: '.first-page',
-                        start: "top center",
+                        trigger: '.second-page',
+                        start: "top 95%",
                         scrub: 1
                     }
                 })

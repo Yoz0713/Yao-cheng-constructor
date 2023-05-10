@@ -45,8 +45,8 @@
                 transparent: false, // default: false
                 resolution: 1,      // default: 1
                 autoResize: true,
-                autoPreventDefault: false,
             });
+            app.renderer.view.style.touchAction = "auto";
             window.onresize = () => {
                 app.renderer.resize(container.clientWidth, container.clientHeight);
             }

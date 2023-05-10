@@ -2954,6 +2954,11 @@ body {
   background-size: 100% 100%;
   width: 100%;
 }
+@media all and (max-width: 820px) {
+  body {
+    background-image: url("../../img/index/webp/index-bg-ph.jpg");
+  }
+}
 
 /* 滾動條樣式 */
 ::-webkit-scrollbar {

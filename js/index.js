@@ -258,6 +258,8 @@ window.onload = function () {
         })
     }
     function bannerOutAnimation() {
+        ScrollTrigger.normalizeScroll();
+        ScrollTrigger.config({ ignoreMobileResize: true });
         let bannerOut = gsap.timeline({
             scrollTrigger: {
                 trigger: ".second-page",
@@ -269,7 +271,7 @@ window.onload = function () {
             },
             force3D: true, // 触发硬件加速
         });
-        ScrollTrigger.config({ ignoreMobileResize: true });
+
         const canvases1 = gsap.utils.toArray('.addCanvas:nth-of-type(4n+2)');
         const canvases2 = gsap.utils.toArray('.addCanvas:nth-of-type(4n+3)');
         const canvases3 = gsap.utils.toArray('.addCanvas:nth-of-type(4n+4)');

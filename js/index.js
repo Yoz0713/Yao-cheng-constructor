@@ -173,7 +173,7 @@ window.onload = function () {
                 scrollTrigger: {
                     trigger: '.first-page',
                     start: "top top",
-                    scrub: 1
+                    scrub: true
                 }
             })
             if (window.innerWidth <= 820) {

@@ -1,7 +1,6 @@
-window.onbeforeunload = function () {
-    window.scrollTo(0, 0);
-
-};
+// window.onbeforeunload = function () {
+//     window.scrollTo(0, 0);
+// };
 window.onload = function () {
 
     //拆字
@@ -456,149 +455,149 @@ window.onload = function () {
 
 
 
-    //第三cut輪播
-    function carosule() {
-        const swiperIndex = document.querySelector(".swiper-index")
-        const swiper = new Swiper(".swiper", {
-            slidesPerView: 1,
+    // //第三cut輪播
+    // function carosule() {
+    //     const swiperIndex = document.querySelector(".swiper-index")
+    //     const swiper = new Swiper(".swiper", {
+    //         slidesPerView: 1,
 
-            loop: true,
-            spaceBetween: 0,
-            speed: 1000,
-            autoplay: {
-                delay: 3100,
-                disableOnInteraction: false
-            },
-            on: {
-                slideChangeTransitionStart: function () {
-                    //pagination 
-                    if (swiper.realIndex == 1) {
-                        swiperIndex.innerHTML = `06`
-                    } else if (swiper.realIndex == 0) {
-                        swiperIndex.innerHTML = `05`
-                    } else if (swiper.realIndex > 7) {
-                        swiperIndex.innerHTML = `0${swiper.realIndex - 7}`
-                    } else {
-                        swiperIndex.innerHTML = `0${swiper.realIndex - 1}`
-                    }
+    //         loop: true,
+    //         spaceBetween: 0,
+    //         speed: 1000,
+    //         autoplay: {
+    //             delay: 3100,
+    //             disableOnInteraction: false
+    //         },
+    //         on: {
+    //             slideChangeTransitionStart: function () {
+    //                 //pagination 
+    //                 if (swiper.realIndex == 1) {
+    //                     swiperIndex.innerHTML = `06`
+    //                 } else if (swiper.realIndex == 0) {
+    //                     swiperIndex.innerHTML = `05`
+    //                 } else if (swiper.realIndex > 7) {
+    //                     swiperIndex.innerHTML = `0${swiper.realIndex - 7}`
+    //                 } else {
+    //                     swiperIndex.innerHTML = `0${swiper.realIndex - 1}`
+    //                 }
 
-                },
-            },
-            effect: 'slide' /* 设置幻灯片效果为'slide' */,
-            breakpoints: {
-                821: {  //当屏幕宽度大于等于320
-                    slidesPerView: 5,
-                    centeredSlides: true,
-                },
+    //             },
+    //         },
+    //         effect: 'slide' /* 设置幻灯片效果为'slide' */,
+    //         breakpoints: {
+    //             821: {  //当屏幕宽度大于等于320
+    //                 slidesPerView: 5,
+    //                 centeredSlides: true,
+    //             },
 
-            }
-        });
-        //pagination init
-        if (swiper.realIndex == 1) {
-            swiperIndex.innerHTML = `06`
-        } else if (swiper.realIndex == 0) {
-            swiperIndex.innerHTML = `05`
-        } else if (swiper.realIndex > 7) {
-            swiperIndex.innerHTML = `0${swiper.realIndex - 7}`
-        } else {
-            swiperIndex.innerHTML = `0${swiper.realIndex - 1}`
-        }
+    //         }
+    //     });
+    //     //pagination init
+    //     if (swiper.realIndex == 1) {
+    //         swiperIndex.innerHTML = `06`
+    //     } else if (swiper.realIndex == 0) {
+    //         swiperIndex.innerHTML = `05`
+    //     } else if (swiper.realIndex > 7) {
+    //         swiperIndex.innerHTML = `0${swiper.realIndex - 7}`
+    //     } else {
+    //         swiperIndex.innerHTML = `0${swiper.realIndex - 1}`
+    //     }
 
-        //navigation
-        const arrow = document.querySelectorAll(".swiper .navBox img")
-        arrow.forEach((item, i) => {
-            if (i == 0) {
-                item.addEventListener("click", () => {
-                    swiper.slidePrev()
-                    console.log(swiper.realIndex - 1)
-                })
-            } else {
-                item.addEventListener("click", () => {
-                    swiper.slideNext()
-                    console.log(swiper.realIndex - 1)
-                })
-            }
-        })
+    //     //navigation
+    //     const arrow = document.querySelectorAll(".swiper .navBox img")
+    //     arrow.forEach((item, i) => {
+    //         if (i == 0) {
+    //             item.addEventListener("click", () => {
+    //                 swiper.slidePrev()
+    //                 console.log(swiper.realIndex - 1)
+    //             })
+    //         } else {
+    //             item.addEventListener("click", () => {
+    //                 swiper.slideNext()
+    //                 console.log(swiper.realIndex - 1)
+    //             })
+    //         }
+    //     })
 
 
-    }
-    carosule()
+    // }
+    // carosule()
 
-    function pageAnimation() {
-        let secondPage = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".second-page",
-                start: "top 60%",
-                toggleActions: "play none none reverse",
-            }
-        })
-        secondPage.to(".second-page .gray", {
-            opacity: 0,
-            duration: 2.5
-        }).from(".second-page .left .imgBox > img ", {
-            scale: 1.3,
-            duration: 2,
-            stagger: 0.2
-        }, "<").from(".second-page .paraBox h2 > :nth-child(1) ", {
-            opacity: 0,
-            x: 30,
-            color: "#000",
-            duration: 1.5,
-        }, "<+0.3").from(".second-page .paraBox h2 > :not(:first-child) ", {
-            opacity: 0,
-            x: 30,
-            duration: 1.6,
-            stagger: 0.06
-        }, "<+0.3").from(".second-page .paraBox h4 ", {
-            opacity: 0,
-            duartion: 1.4
-        }, "<+0.3").from(".second-page .paraBox p ", {
-            opacity: 0,
-            duartion: 1.4
-        }, "<+0.3")
+    // function pageAnimation() {
+    //     let secondPage = gsap.timeline({
+    //         scrollTrigger: {
+    //             trigger: ".second-page",
+    //             start: "top 60%",
+    //             toggleActions: "play none none reverse",
+    //         }
+    //     })
+    //     secondPage.to(".second-page .gray", {
+    //         opacity: 0,
+    //         duration: 2.5
+    //     }).from(".second-page .left .imgBox > img ", {
+    //         scale: 1.3,
+    //         duration: 2,
+    //         stagger: 0.2
+    //     }, "<").from(".second-page .paraBox h2 > :nth-child(1) ", {
+    //         opacity: 0,
+    //         x: 30,
+    //         color: "#000",
+    //         duration: 1.5,
+    //     }, "<+0.3").from(".second-page .paraBox h2 > :not(:first-child) ", {
+    //         opacity: 0,
+    //         x: 30,
+    //         duration: 1.6,
+    //         stagger: 0.06
+    //     }, "<+0.3").from(".second-page .paraBox h4 ", {
+    //         opacity: 0,
+    //         duartion: 1.4
+    //     }, "<+0.3").from(".second-page .paraBox p ", {
+    //         opacity: 0,
+    //         duartion: 1.4
+    //     }, "<+0.3")
 
-        let thirdPage = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".third-page",
-                start: "top 80%",
-                toggleActions: "play none none reverse",
-            }
-        })
-        thirdPage.from(".third-page .paraBox ", {
-            opacity: 0,
-            duration: 1.2,
-        }, "<+0.8").from(".third-page .swiper ", {
-            opacity: 0,
-            y: 15,
-            duration: 1.2,
-        }, "<+0.8")
+    //     let thirdPage = gsap.timeline({
+    //         scrollTrigger: {
+    //             trigger: ".third-page",
+    //             start: "top 80%",
+    //             toggleActions: "play none none reverse",
+    //         }
+    //     })
+    //     thirdPage.from(".third-page .paraBox ", {
+    //         opacity: 0,
+    //         duration: 1.2,
+    //     }, "<+0.8").from(".third-page .swiper ", {
+    //         opacity: 0,
+    //         y: 15,
+    //         duration: 1.2,
+    //     }, "<+0.8")
 
-        let forthPage = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".forth-page",
-                start: "top 60%",
-                toggleActions: "play none none reverse",
-            }
-        })
-        forthPage.to(".forth-page .gray", {
-            opacity: 0,
-            duration: 2.5
-        }).from(".forth-page .imageBox .imgBox > img ", {
-            scale: 1.3,
-            duration: 2,
-            stagger: 0.2
-        }, "<").from(".forth-page .paraBox h2 ", {
-            opacity: 0,
-            duration: 0.8
-        }, "<+0.3").from(".forth-page .paraBox h4 ", {
-            opacity: 0,
-            duration: 0.8
-        }, "<").from(".forth-page .paraBox p ", {
-            opacity: 0,
-            duration: 0.8
-        }, "<+0.3")
-    }
-    pageAnimation()
+    //     let forthPage = gsap.timeline({
+    //         scrollTrigger: {
+    //             trigger: ".forth-page",
+    //             start: "top 60%",
+    //             toggleActions: "play none none reverse",
+    //         }
+    //     })
+    //     forthPage.to(".forth-page .gray", {
+    //         opacity: 0,
+    //         duration: 2.5
+    //     }).from(".forth-page .imageBox .imgBox > img ", {
+    //         scale: 1.3,
+    //         duration: 2,
+    //         stagger: 0.2
+    //     }, "<").from(".forth-page .paraBox h2 ", {
+    //         opacity: 0,
+    //         duration: 0.8
+    //     }, "<+0.3").from(".forth-page .paraBox h4 ", {
+    //         opacity: 0,
+    //         duration: 0.8
+    //     }, "<").from(".forth-page .paraBox p ", {
+    //         opacity: 0,
+    //         duration: 0.8
+    //     }, "<+0.3")
+    // }
+    // pageAnimation()
 
     // function particles() {
     //     particlesJS.load('particles-js', './js/particlesjs-config.json', function () {

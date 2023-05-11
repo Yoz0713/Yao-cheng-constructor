@@ -89,7 +89,7 @@
     .first-page {
         position: relative;
         width: 100%;
-        height: 105vh;
+        height: 140vh;
         z-index: 20;
 
         @include tablet() {
@@ -126,37 +126,14 @@
                 opacity: 0.99;
                 backface-visibility: hidden;
 
-
-                &:first-child {
-                    display: none;
-                }
             }
 
-            .addCanvas:nth-of-type(4n+2) {
-                z-index: 1;
-            }
-
-            .addCanvas:nth-of-type(4n+3) {
-                z-index: 2;
-            }
-
-            .addCanvas:nth-of-type(4n+4) {
-                z-index: 3;
-            }
-
-            .addCanvas:nth-of-type(4n+5) {
-                z-index: 4;
-
-                @include tablet() {
-                    display: none;
-                }
-            }
         }
 
         .banner-paraBox {
             position: absolute;
             right: 10vw;
-            top: 33vh;
+            top: 29vh;
             color: #1a1a1a;
             opacity: 0;
             z-index: 6;

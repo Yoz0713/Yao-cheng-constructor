@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.8.6/pixi.min.js"></script>
     <title>test</title>
 </head>
 <style>
@@ -14,20 +15,17 @@
         box-sizing: border-box;
     }
 
-    .first-page {
-        pointer-events: none;
-    }
+
 
     .first-page,
     .second-page {
         width: 100%;
-        height: 220vw;
+        height: 140vh;
     }
 </style>
 
 <body>
     <div class="first-page">
-
     </div>
     <div class="second-page">
 
@@ -35,7 +33,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.2.4/pixi.min.js"></script>
     <script>
 
 
@@ -46,7 +43,7 @@
                 width: container.clientWidth,
                 height: container.clientHeight,
                 antialias: true,    // default: false
-                transparent: false, // default: false
+                transparent: true, // default: false
                 resolution: 1,      // default: 1
                 autoResize: true,
             });
@@ -63,21 +60,33 @@
                 images = ['./img/index/jpg/banner-bg4.png'];
             }
 
-
-            //切圖片
+            let random = Math.floor(Math.random() * images.length);
+            const imageUrl = images[random];
+            //切圖片幾乘幾
             const gap = 6;
             const blocksNum = {
                 x: window.innerWidth > 820 ? 10 : 3,
                 y: 4
+            };
+
+            //載入圖片改變寬高使其符合螢幕後才呼叫onLoad函數
+            let sprite;
+            const img = new Image();
+            img.src = imageUrl
+            img.onload = () => {
+                const texture = PIXI.Texture.from(img);
+                texture.baseTexture.width = container.clientWidth * 1.05
+                texture.baseTexture.height = container.clientHeight * 0.75
+                sprite = PIXI.Sprite.from(texture);//'./img/index/jpg/test.webp'
+                onLoad()
             }
-            const sprite = PIXI.Sprite.from('./img/index/webp/first-page-banner2.webp');
 
-            let standardHeight = (app.view.height - gap * (blocksNum.y - 1)) / blocksNum.y
+            let standardHeight = (app.view.height - gap * (blocksNum.y - 1)) / blocksNum.y * 0.66
             let standardWidth = (app.view.width - gap * (blocksNum.x - 1)) / blocksNum.x
-            let longHeight = (app.view.height - gap * (blocksNum.y - 1) - standardHeight) / (blocksNum.y - 2);
+            let longHeight = (app.view.height - gap * (blocksNum.y - 1) - standardHeight) / (blocksNum.y - 2) * 0.66;
             function onLoad() {
-
-                for (let i = 0; i < blocksNum.x + 1; i++) {
+                //切割方塊
+                for (let i = 0; i < blocksNum.x; i++) {
                     for (let j = 0; j < blocksNum.y; j++) {
                         if (j == 0) {
                             const texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle(i * standardWidth + gap * i, j, standardWidth, standardHeight));
@@ -88,11 +97,35 @@
                             container.position.y = j * (standardHeight + gap);
                             app.stage.addChild(container);
                         } else if (j == 1) {
-                            const texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle(i == 0 ? 0 : (i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap) - gap * (i - 1), j * gap + j * standardHeight, i == 0 ? standardWidth / 2 : standardWidth, longHeight));
+                            let texture;
+                            if (window.innerWidth > 820) {
+                                if (i == 0) {
+                                    texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle(0, standardHeight + gap, standardWidth / 2, longHeight));
+                                } else if (i == 7) {
+                                    texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle((i - 1) * (standardWidth + gap) + (standardWidth / 2 - gap), standardHeight + gap, standardWidth + gap * (i - 1), longHeight));
+                                } else if (i == 8) {
+                                    texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap), standardHeight + gap, standardWidth + gap, longHeight));
+                                } else {
+                                    texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap), standardHeight + gap, standardWidth, longHeight));
+                                }
+                            } else {
+                                if (i == 0) {
+                                    texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle(0, standardHeight + gap, standardWidth / 2, longHeight));
+                                } else if (i == 2 || i == 3 || i == 4) {
+                                    texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap) - gap * (i - 1), standardHeight + gap, standardWidth + gap * 2, longHeight));
+                                } else {
+                                    texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap), standardHeight + gap, standardWidth, longHeight));
+                                }
+                            }
                             const croppedSprite = new PIXI.Sprite(texture);
                             const container = new PIXI.Container();
                             container.addChild(croppedSprite);
-                            container.position.x = i == 0 ? 0 : (i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap);
+                            if (window.innerWidth > 820) {
+                                container.position.x = i == 0 ? 0 : i <= 6 || i >= 8 ? (i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap) : (i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap) - gap * (i - 5);
+                            } else {
+                                container.position.x = i == 0 ? 0 : i <= 1 || i > 4 ? (i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap) : (i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap) - gap * (i - 1);
+                            }
+
                             container.position.y = j * (standardHeight + gap);
                             app.stage.addChild(container);
                         } else if (j == 2) {
@@ -103,50 +136,316 @@
                             container.position.x = i * standardWidth + gap * i;
                             container.position.y = j * gap + longHeight + standardHeight;
                             app.stage.addChild(container);
+                        } else if (j == 3) {
+                            let texture;
+                            if (window.innerWidth > 820) {
+                                if (i == 0) {
+                                    texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle(0, standardHeight + longHeight + gap * 2, standardWidth / 2, longHeight));
+                                } else {
+                                    texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap), standardHeight + longHeight + gap * 2, standardWidth, longHeight));
+                                }
+                            } else {
+                                if (i == 0) {
+                                    texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle(0, standardHeight + longHeight + gap * 2, standardWidth / 2, longHeight));
+                                } else {
+                                    texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap), standardHeight + longHeight + gap * 2, standardWidth, longHeight));
+                                }
+                            }
+                            const croppedSprite = new PIXI.Sprite(texture);
+                            const container = new PIXI.Container();
+                            container.addChild(croppedSprite);
+                            container.position.x = i == 0 ? 0 : (i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap);
+                            container.position.y = j * gap + standardHeight + longHeight * (j - 1);
+                            app.stage.addChild(container);
                         }
                     }
                 }
-                let gg = gsap.timeline({
+
+                //第二列第四列最後半塊，必包原理
+                function addLast() {
+                    let count = 0
+
+                    return () => {
+                        count++
+                        if (count == 1) {
+                            const i = window.innerWidth > 820 ? 10 : 3;
+                            let texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap), standardHeight + gap, standardWidth / 2, longHeight));
+                            const croppedSprite = new PIXI.Sprite(texture);
+                            const container = new PIXI.Container();
+                            container.addChild(croppedSprite);
+                            container.position.x = (i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap)
+                            container.position.y = (standardHeight + gap);
+                            app.stage.addChild(container);
+                        } else {
+                            const i = window.innerWidth > 820 ? 10 : 3;
+                            let texture = new PIXI.Texture(sprite.texture.baseTexture, new PIXI.Rectangle((i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap), standardHeight + longHeight + gap * 2, standardWidth / 2, longHeight));
+                            const croppedSprite = new PIXI.Sprite(texture);
+                            const container = new PIXI.Container();
+                            container.addChild(croppedSprite);
+                            container.position.x = (i - 1) * (standardWidth + gap) + (standardWidth / 2 + gap)
+                            container.position.y = 3 * gap + standardHeight + longHeight * 2;
+                            app.stage.addChild(container);
+                        }
+
+                    }
+
+                }
+                const test = addLast()
+                test()
+                test()
+
+
+                //bannerOut動畫
+                let bannerOut = gsap.timeline({
                     scrollTrigger: {
-                        trigger: '.second-page',
-                        start: "top 95%",
+                        trigger: '.first-page',
+                        start: "top top",
                         scrub: 1
                     }
                 })
-                gg.to(app.stage.children[0], {
-                    x: -window.innerWidth / 2,
-                    y: -window.innerWidth * 1.2,
-                }).to(app.stage.children[3], {
-                    x: -window.innerWidth / 10,
-                    y: -window.innerWidth * 2,
-                }, "<").to(app.stage.children[6], {
-                    x: window.innerWidth / 2,
-                    y: -window.innerWidth * 2,
-                }, "<").to(app.stage.children[1], {
-                    x: -window.innerWidth / 2,
-                    y: -window.innerWidth * 1,
-                }, "<").to(app.stage.children[4], {
-                    x: -window.innerWidth / 10,
-                    y: -window.innerWidth * 2,
-                }, "<").to(app.stage.children[7], {
-                    x: window.innerWidth / 1.5,
-                    y: -window.innerWidth * 1.7,
-                }, "<").to(app.stage.children[10], {
-                    x: window.innerWidth / 0.8,
-                    y: -window.innerWidth * 0.6,
-                }, "<").to(app.stage.children[2], {
-                    x: -window.innerWidth / 2,
-                    y: -window.innerWidth * 0.4,
-                }, "<").to(app.stage.children[5], {
-                    x: window.innerWidth / 3,
-                    y: -window.innerWidth * 1.7,
-                }, "<").to(app.stage.children[8], {
-                    x: window.innerWidth / 1.2,
-                    y: -window.innerWidth * 0.4,
-                }, "<")
+                if (window.innerWidth <= 820) {
+                    bannerOut.fromTo(app.stage.children[0], {
+                        x: app.stage.children[0].position.x,
+                        y: app.stage.children[0].position.y,
+                    }, {
+                        x: -window.innerWidth / 2,
+                        y: -window.innerWidth * 1.2,
+                    }).fromTo(app.stage.children[4], {
+                        x: app.stage.children[4].position.x,
+                        y: app.stage.children[4].position.y,
+                    }, {
+                        x: -window.innerWidth / 10,
+                        y: -window.innerWidth * 2,
+                    }, "<").fromTo(app.stage.children[8], {
+                        x: app.stage.children[8].position.x,
+                        y: app.stage.children[8].position.y,
+                    }, {
+                        x: window.innerWidth / 2,
+                        y: -window.innerWidth * 2,
+                    }, "<").fromTo(app.stage.children[1], {
+                        x: app.stage.children[1].position.x,
+                        y: app.stage.children[1].position.y,
+                    }, {
+                        x: -window.innerWidth / 2,
+                        y: -window.innerWidth * 1,
+                    }, "<").fromTo(app.stage.children[5], {
+                        x: app.stage.children[5].position.x,
+                        y: app.stage.children[5].position.y,
+                    }, {
+                        x: -window.innerWidth / 10,
+                        y: -window.innerWidth * 2,
+                    }, "<").fromTo(app.stage.children[9], {
+                        x: app.stage.children[9].position.x,
+                        y: app.stage.children[9].position.y,
+                    }, {
+                        x: window.innerWidth / 1.5,
+                        y: -window.innerWidth * 1.7,
+                    }, "<").fromTo(app.stage.children[12], {
+                        x: app.stage.children[12].position.x,
+                        y: app.stage.children[12].position.y,
+                    }, {
+                        x: window.innerWidth / 0.6,
+                        y: -window.innerWidth * 0.6,
+                    }, "<").fromTo(app.stage.children[2], {
+                        x: app.stage.children[2].position.x,
+                        y: app.stage.children[2].position.y,
+                    }, {
+                        x: -window.innerWidth / 2,
+                        y: -window.innerWidth * 0.4,
+                    }, "<").fromTo(app.stage.children[6], {
+                        x: app.stage.children[6].position.x,
+                        y: app.stage.children[6].position.y,
+                    }, {
+                        x: window.innerWidth / 3,
+                        y: -window.innerWidth * 1.7,
+                    }, "<").fromTo(app.stage.children[10], {
+                        x: app.stage.children[10].position.x,
+                        y: app.stage.children[10].position.y,
+                    }, {
+                        x: window.innerWidth / 1.2,
+                        y: -window.innerWidth * 0.4,
+                    }, "<").fromTo(app.stage.children[3], {
+                        x: app.stage.children[3].position.x,
+                        y: app.stage.children[3].position.y,
+                    }, {
+                        x: -window.innerWidth / 2,
+                        y: -window.innerWidth * 0.000005,
+                    }, "<").fromTo(app.stage.children[7], {
+                        x: app.stage.children[7].position.x,
+                        y: app.stage.children[7].position.y,
+                    }, {
+                        x: -window.innerWidth / 5,
+                        y: -window.innerWidth * 1,
+                    }, "<").fromTo(app.stage.children[11], {
+                        x: app.stage.children[11].position.x,
+                        y: app.stage.children[11].position.y,
+                    }, {
+                        x: window.innerWidth / 2.5,
+                        y: -window.innerWidth * 0.5,
+                    }, "<").fromTo(app.stage.children[13], {
+                        x: app.stage.children[13].position.x,
+                        y: app.stage.children[13].position.y,
+                    }, {
+                        x: window.innerWidth / 1,
+                        y: -window.innerWidth * 0.00005,
+                    }, "<")
+                } else {
+                    //             const canvases1 = gsap.utils.toArray('.addCanvas:nth-of-type(4n+2)');
+                    // const canvases2 = gsap.utils.toArray('.addCanvas:nth-of-type(4n+3)');
+                    // const canvases3 = gsap.utils.toArray('.addCanvas:nth-of-type(4n+4)');
+                    let arr1 = []
+                    let arr2 = []
+                    let arr3 = []
+                    let arr4 = [];
+                    for (let i = 0; i < blocksNum.x; i++) {
+                        if (i == 0) {
+                            arr1.push(app.stage.children[0])
+                            arr2.push(app.stage.children[1])
+                            arr3.push(app.stage.children[2])
+                            arr4.push(app.stage.children[3])
+
+                        } else if (i == blocksNum.x - 1) {
+                            //arr1
+                            arr1.push(app.stage.children[4 * i])
+                            arr1.push(app.stage.children[38])
+                            //arr2
+                            arr2.push(app.stage.children[4 * i + 1])
+                            arr2.push(app.stage.children[40])
+                            //arr3
+                            arr3.push(app.stage.children[4 * i + 2])
+                            arr3.push(app.stage.children[39])
+                            //arr4
+                            arr4.push(app.stage.children[4 * i + 3])
+                            arr4.push(app.stage.children[41])
+                        } else {
+                            //arr2
+                            arr1.push(app.stage.children[4 * i])
+                            //arr2
+                            arr2.push(app.stage.children[4 * i + 1])
+                            //arr3
+                            arr3.push(app.stage.children[4 * i + 2])
+                            //arr4
+                            arr4.push(app.stage.children[4 * i + 3])
+                        }
+
+                    }
+                    const canvases1 = gsap.utils.toArray(arr1);
+                    const canvases2 = gsap.utils.toArray(arr2);
+                    const canvases3 = gsap.utils.toArray(arr3);
+                    const canvases4 = gsap.utils.toArray(arr4);
+
+                    bannerOut.to(".banner-paraBox", {
+                        y: -window.innerHeight / 2,
+                        duration: 500 / window.innerHeight
+                    }).fromTo(canvases1, {
+                        x: (index) => {
+                            return canvases1[index].position.x;
+                        },
+                        y: (index) => {
+                            return canvases1[index].position.y;
+                        },
+                    }, {
+                        x: (index) => {
+                            let x;
+
+                            let side = blocksNum.x - index <= blocksNum.x / 2 ? 1 : -1;
+                            let distance = Math.abs(index - blocksNum.x / 2)
+                            x = canvases1[index].position.x + side * window.innerWidth * (distance / 10) * 0.5
+                            return x;
+                        },
+                        y: (index) => {
+                            let y;
+                            let distance = Math.abs(index - blocksNum.x / 2)
+                            x = canvases1[index].position.y - window.innerWidth / (distance == 0 ? 0.08 : distance / 10) * 0.08
+                            return x;
+                        },
+                    }, "<").fromTo(canvases2, {
+                        x: (index) => {
+                            return canvases2[index].position.x;
+                        },
+                        y: (index) => {
+                            return canvases2[index].position.y;
+                        },
+                    }, {
+                        x: (index) => {
+                            let x;
+
+                            let side = blocksNum.x - index <= blocksNum.x / 2 ? 1 : -1;
+                            let distance = Math.abs(index - blocksNum.x / 2)
+                            x = canvases2[index].position.x + side * window.innerWidth * (distance / 10) * 0.5
+                            return x;
+                        },
+                        y: (index) => {
+                            let y;
+                            let distance = Math.abs(index - blocksNum.x / 2)
+                            x = canvases2[index].position.y - window.innerWidth / (distance == 0 ? 0.08 : distance / 10) * 0.08
+                            return x;
+                        },
+                    }, "<").fromTo(canvases3, {
+                        x: (index) => {
+                            return canvases3[index].position.x;
+                        },
+                        y: (index) => {
+                            return canvases3[index].position.y;
+                        },
+                    }, {
+                        x: (index) => {
+                            let x;
+
+                            let side = blocksNum.x - index <= blocksNum.x / 2 ? 1 : -1;
+                            let distance = Math.abs(index - blocksNum.x / 2)
+                            x = canvases3[index].position.x + side * window.innerWidth * (distance / 10) * 0.5
+                            return x;
+                        },
+                        y: (index) => {
+                            let y;
+                            let distance = Math.abs(index - blocksNum.x / 2)
+                            x = canvases3[index].position.y - window.innerWidth / (distance == 0 ? 0.08 : distance / 10) * 0.08
+                            return x;
+                        },
+                    }, "<").fromTo(canvases4, {
+                        x: (index) => {
+                            return canvases4[index].position.x;
+                        },
+                        y: (index) => {
+                            return canvases4[index].position.y;
+                        },
+                    }, {
+                        x: (index) => {
+                            let x;
+
+                            let side = blocksNum.x - index <= blocksNum.x / 2 ? 1 : -1;
+                            let distance = Math.abs(index - blocksNum.x / 2)
+                            x = canvases4[index].position.x + side * window.innerWidth * (distance / 10) * 0.5
+                            return x;
+                        },
+                        y: (index) => {
+                            let y;
+                            let distance = Math.abs(index - blocksNum.x / 2)
+                            x = canvases4[index].position.y - window.innerWidth / (distance == 0 ? 0.08 : distance / 10) * 0.08
+                            return x;
+                        },
+                    }, "<")
+                }
+
+                //banner進場，位置要擺在bannerOut下面，才能捕捉到原始座標
+                bannerInAnimation()
+            }
+            function bannerInAnimation() {
+                const array = gsap.utils.toArray(app.stage.children);
+
+                let gg = gsap.timeline()
+
+                gg.from(array, {
+                    x: window.innerWidth * 1.2,
+                    y: window.innerHeight / 2,
+                    rotation: window.innerWidth > 820 ? -Math.PI / 3 : -Math.PI / 5,
+                    stagger: 0.04,
+                    ease: "power2.inOut",
+                    duration: window.innerWidth > 820 ? 1.8 : 1.2
+                })
 
             }
-            onLoad()
         }
         pixiSplit()
     </script>

@@ -125,7 +125,7 @@
                 will-change: transform;
                 opacity: 0.99;
                 backface-visibility: hidden;
-
+                pointer-events: none;
             }
 
         }

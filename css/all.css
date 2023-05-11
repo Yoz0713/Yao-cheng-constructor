@@ -664,6 +664,7 @@
   will-change: transform;
   opacity: 0.99;
   backface-visibility: hidden;
+  pointer-events: none;
 }
 .index .first-page .banner-paraBox {
   position: absolute;

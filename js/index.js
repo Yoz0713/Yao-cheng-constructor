@@ -167,7 +167,10 @@ window.onload = function () {
             test()
 
 
-
+            if (window.innerWidth <= 820) {
+                ScrollTrigger.normalizeScroll(true);
+                ScrollTrigger.config({ ignoreMobileResize: true });
+            }
             //banner進場，位置要擺在bannerOut下面，才能捕捉到原始座標
             bannerInAnimation()
         }
@@ -231,8 +234,7 @@ window.onload = function () {
                 }
             })
             if (window.innerWidth <= 820) {
-                ScrollTrigger.normalizeScroll(true);
-                ScrollTrigger.config({ ignoreMobileResize: true });
+
                 bannerOut.fromTo(".first-page .banner-paraBox", {
                     opacity: 1,
                 }, {

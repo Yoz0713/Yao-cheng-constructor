@@ -134,6 +134,7 @@ window.onload = function () {
             }
 
             //第二列第四列最後半塊，必包原理
+
             function addLast() {
                 let count = 0
 
@@ -162,10 +163,16 @@ window.onload = function () {
                 }
 
             }
+
             const test = addLast()
             test()
             test()
 
+            if (window.innerWidth <= 820) {
+                //取消menu bar 因滾動而toggle，修正ios手機因為menu bar而產生的效能劣化
+                ScrollTrigger.normalizeScroll(true);
+                ScrollTrigger.config({ ignoreMobileResize: true });
+            }
 
             //banner進場，位置要擺在bannerOut下面，才能捕捉到原始座標
             bannerInAnimation()
@@ -174,7 +181,7 @@ window.onload = function () {
         function bannerInAnimation() {
             const array = gsap.utils.toArray(app.stage.children);
 
-            let gg = gsap.timeline()
+            let gg = gsap.timeline();
 
             gg.from(array, {
                 x: window.innerWidth * 1.2,
@@ -184,14 +191,7 @@ window.onload = function () {
                 ease: "power2.inOut",
                 duration: window.innerWidth > 820 ? 1.8 : 1.2,
                 onComplete: () => {
-                    if (window.innerWidth <= 820) {
-                        //修正ios手機因為menu bar而產生的效能劣化
-                        ScrollTrigger.normalizeScroll(true);
-                        ScrollTrigger.config({ ignoreMobileResize: true });
-                    } else {
-                        document.body.style.overflow = "auto"
-                    }
-
+                    document.body.style.overflow = "auto"
                     bannerOutAnimation()
                 }
             }).to(".first-page .banner-paraBox ", {
@@ -328,9 +328,10 @@ window.onload = function () {
                     y: -window.innerWidth * 0.00005,
                 }, "<")
             } else {
-                let arr1 = []
-                let arr2 = []
-                let arr3 = []
+                //將方塊分組，一列一組，共四組
+                let arr1 = [];
+                let arr2 = [];
+                let arr3 = [];
                 let arr4 = [];
                 for (let i = 0; i < blocksNum.x; i++) {
                     if (i == 0) {
@@ -364,6 +365,7 @@ window.onload = function () {
                     }
 
                 }
+
                 const canvases1 = gsap.utils.toArray(arr1);
                 const canvases2 = gsap.utils.toArray(arr2);
                 const canvases3 = gsap.utils.toArray(arr3);
@@ -382,7 +384,6 @@ window.onload = function () {
                 }, {
                     x: (index) => {
                         let x;
-
                         let side = blocksNum.x - index <= blocksNum.x / 2 ? 1 : -1;
                         let distance = Math.abs(index - blocksNum.x / 2)
                         x = canvases1[index].position.x + side * window.innerWidth * (distance / 10) * 0.5
@@ -391,8 +392,8 @@ window.onload = function () {
                     y: (index) => {
                         let y;
                         let distance = Math.abs(index - blocksNum.x / 2)
-                        x = canvases1[index].position.y - window.innerWidth / (distance == 0 ? 0.08 : distance / 10) * 0.08
-                        return x;
+                        y = canvases1[index].position.y - window.innerWidth / (distance == 0 ? 0.08 : distance / 10) * 0.08
+                        return y;
                     },
                 }, "<").fromTo(canvases2, {
                     x: (index) => {
@@ -413,8 +414,8 @@ window.onload = function () {
                     y: (index) => {
                         let y;
                         let distance = Math.abs(index - blocksNum.x / 2)
-                        x = canvases2[index].position.y - window.innerWidth / (distance == 0 ? 0.08 : distance / 10) * 0.08
-                        return x;
+                        y = canvases2[index].position.y - window.innerWidth / (distance == 0 ? 0.08 : distance / 10) * 0.08
+                        return y;
                     },
                 }, "<").fromTo(canvases3, {
                     x: (index) => {
@@ -435,8 +436,8 @@ window.onload = function () {
                     y: (index) => {
                         let y;
                         let distance = Math.abs(index - blocksNum.x / 2)
-                        x = canvases3[index].position.y - window.innerWidth / (distance == 0 ? 0.08 : distance / 10) * 0.08
-                        return x;
+                        y = canvases3[index].position.y - window.innerWidth / (distance == 0 ? 0.08 : distance / 10) * 0.08
+                        return y;
                     },
                 }, "<").fromTo(canvases4, {
                     x: (index) => {
@@ -457,8 +458,8 @@ window.onload = function () {
                     y: (index) => {
                         let y;
                         let distance = Math.abs(index - blocksNum.x / 2)
-                        x = canvases4[index].position.y - window.innerWidth / (distance == 0 ? 0.08 : distance / 10) * 0.08
-                        return x;
+                        y = canvases4[index].position.y - window.innerWidth / (distance == 0 ? 0.08 : distance / 10) * 0.08
+                        return y;
                     },
                 }, "<")
             }

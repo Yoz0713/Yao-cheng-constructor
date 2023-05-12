@@ -216,10 +216,16 @@ window.onload = function () {
                 x: -30,
                 opacity: 0,
                 duration: 0.8,
-            }, "<+0.4").to("body", {
-                overflow: "auto",
+            }, "<+0.4").to(".index", {
+                position: "static",
                 duration: 0.001
-            }).then(() => {
+            }).fromTo("#footer", {
+                opacity: 0,
+
+            }, {
+                opacity: 1,
+                duration: 0.0001
+            }, "<").then(() => {
                 bannerOutAnimation()
             })
         }

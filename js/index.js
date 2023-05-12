@@ -167,11 +167,6 @@ window.onload = function () {
             test()
 
 
-            if (window.innerWidth <= 820) {
-                //修正ios手機因為menu bar而產生的效能劣化
-
-                ScrollTrigger.config({ ignoreMobileResize: true });
-            }
             //banner進場，位置要擺在bannerOut下面，才能捕捉到原始座標
             bannerInAnimation()
         }
@@ -189,7 +184,14 @@ window.onload = function () {
                 ease: "power2.inOut",
                 duration: window.innerWidth > 820 ? 1.8 : 1.2,
                 onComplete: () => {
-                    ScrollTrigger.normalizeScroll(true);
+                    if (window.innerWidth <= 820) {
+                        //修正ios手機因為menu bar而產生的效能劣化
+                        ScrollTrigger.normalizeScroll(true);
+                        ScrollTrigger.config({ ignoreMobileResize: true });
+                    } else {
+                        document.body.style.overflow = "auto"
+                    }
+
                     bannerOutAnimation()
                 }
             }).to(".first-page .banner-paraBox ", {

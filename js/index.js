@@ -218,11 +218,9 @@ window.onload = function () {
                 duration: 0.8,
             }, "<+0.4").to(".index", {
                 position: "static",
+                height: "auto",
                 duration: 0.001
-            }).fromTo("#footer", {
-                opacity: 0,
-
-            }, {
+            }).to("#footer", {
                 opacity: 1,
                 duration: 0.0001
             }, "<").then(() => {

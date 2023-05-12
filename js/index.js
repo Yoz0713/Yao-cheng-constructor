@@ -229,7 +229,7 @@ window.onload = function () {
             let bannerOut = gsap.timeline({
                 scrollTrigger: {
                     trigger: '.first-page',
-                    start: "top top",
+                    start: "8% top",
                     scrub: 1
                 }
             })

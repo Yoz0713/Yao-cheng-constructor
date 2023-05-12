@@ -166,8 +166,62 @@ window.onload = function () {
             test()
             test()
 
-            ScrollTrigger.normalizeScroll(true);
-            ScrollTrigger.config({ ignoreMobileResize: true });
+
+
+            //banner進場，位置要擺在bannerOut下面，才能捕捉到原始座標
+            bannerInAnimation()
+        }
+
+        function bannerInAnimation() {
+            const array = gsap.utils.toArray(app.stage.children);
+
+            let gg = gsap.timeline()
+
+            gg.from(array, {
+                x: window.innerWidth * 1.2,
+                y: window.innerHeight / 2,
+                rotation: window.innerWidth > 820 ? -Math.PI / 3 : -Math.PI / 5,
+                stagger: 0.04,
+                ease: "power2.inOut",
+                duration: window.innerWidth > 820 ? 1.8 : 1.2
+            }).to(".first-page .banner-paraBox ", {
+                opacity: 1,
+                duration: 0.3,
+            }, ">-0.5").from(".first-page h2 span", {
+                x: 80,
+                duration: 0.6,
+                stagger: 0.012
+            }, "<").to(".first-page h2 span", {
+                opacity: 1,
+                duration: 0.6,
+                stagger: 0.012
+            }, "<").from(".first-page p span", {
+                x: 80,
+                duration: 0.6,
+                stagger: 0.012
+            }, "<+0.6").to(".first-page p span", {
+                opacity: 1,
+                duration: 0.6,
+                stagger: 0.012
+            }, "<").to(".first-page .box", {
+                opacity: 1,
+                duration: 0.3,
+            }, "<").from(".first-page .box .line", {
+                width: 0,
+                duration: 0.8,
+            }, "<+0.4").from(".first-page .box p", {
+                x: -30,
+                opacity: 0,
+                duration: 0.8,
+            }, "<+0.4").to("body", {
+                overflow: "auto",
+                duration: 0.001
+            }).then(() => {
+                bannerOutAnimation()
+            })
+        }
+
+        function bannerOutAnimation() {
             //bannerOut動畫
             let bannerOut = gsap.timeline({
                 scrollTrigger: {
@@ -177,13 +231,20 @@ window.onload = function () {
                 }
             })
             if (window.innerWidth <= 820) {
-                bannerOut.fromTo(app.stage.children[0], {
+                ScrollTrigger.normalizeScroll(true);
+                ScrollTrigger.config({ ignoreMobileResize: true });
+                bannerOut.fromTo(".first-page .banner-paraBox", {
+                    opacity: 1,
+                }, {
+                    opacity: 0,
+                    duration: 0.05
+                }).fromTo(app.stage.children[0], {
                     x: app.stage.children[0].position.x,
                     y: app.stage.children[0].position.y,
                 }, {
                     x: -window.innerWidth / 2,
                     y: -window.innerWidth * 1.2,
-                }).fromTo(app.stage.children[4], {
+                }, "<").fromTo(app.stage.children[4], {
                     x: app.stage.children[4].position.x,
                     y: app.stage.children[4].position.y,
                 }, {
@@ -263,9 +324,6 @@ window.onload = function () {
                     y: -window.innerWidth * 0.00005,
                 }, "<")
             } else {
-                //             const canvases1 = gsap.utils.toArray('.addCanvas:nth-of-type(4n+2)');
-                // const canvases2 = gsap.utils.toArray('.addCanvas:nth-of-type(4n+3)');
-                // const canvases3 = gsap.utils.toArray('.addCanvas:nth-of-type(4n+4)');
                 let arr1 = []
                 let arr2 = []
                 let arr3 = []
@@ -400,55 +458,6 @@ window.onload = function () {
                     },
                 }, "<")
             }
-
-            //banner進場，位置要擺在bannerOut下面，才能捕捉到原始座標
-            bannerInAnimation()
-        }
-        function bannerInAnimation() {
-            const array = gsap.utils.toArray(app.stage.children);
-
-            let gg = gsap.timeline()
-
-            gg.from(array, {
-                x: window.innerWidth * 1.2,
-                y: window.innerHeight / 2,
-                rotation: window.innerWidth > 820 ? -Math.PI / 3 : -Math.PI / 5,
-                stagger: 0.04,
-                ease: "power2.inOut",
-                duration: window.innerWidth > 820 ? 1.8 : 1.2
-            }).to(".first-page .banner-paraBox ", {
-                opacity: 1,
-                duration: 0.3,
-            }, ">-0.5").from(".first-page h2 span", {
-                x: 80,
-                duration: 0.6,
-                stagger: 0.012
-            }, "<").to(".first-page h2 span", {
-                opacity: 1,
-                duration: 0.6,
-                stagger: 0.012
-            }, "<").from(".first-page p span", {
-                x: 80,
-                duration: 0.6,
-                stagger: 0.012
-            }, "<+0.6").to(".first-page p span", {
-                opacity: 1,
-                duration: 0.6,
-                stagger: 0.012
-            }, "<").to(".first-page .box", {
-                opacity: 1,
-                duration: 0.3,
-            }, "<").from(".first-page .box .line", {
-                width: 0,
-                duration: 0.8,
-            }, "<+0.4").from(".first-page .box p", {
-                x: -30,
-                opacity: 0,
-                duration: 0.8,
-            }, "<+0.4").to("body", {
-                overflow: "auto",
-                duration: 0.001
-            })
 
         }
     }

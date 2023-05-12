@@ -649,12 +649,7 @@
   height: 100%;
   opacity: 0;
 }
-.index .first-page .canvas-container {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-.index .first-page .canvas-container canvas {
+.index .first-page canvas {
   width: 100%;
   height: 100%;
   pointer-events: none;

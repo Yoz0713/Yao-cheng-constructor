@@ -166,7 +166,8 @@ window.onload = function () {
             test()
             test()
 
-
+            ScrollTrigger.normalizeScroll(true);
+            ScrollTrigger.config({ ignoreMobileResize: true });
             //bannerOut動畫
             let bannerOut = gsap.timeline({
                 scrollTrigger: {

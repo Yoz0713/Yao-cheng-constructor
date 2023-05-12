@@ -632,12 +632,12 @@
 }
 @media all and (max-width: 820px) {
   .index .first-page {
-    height: 150vw;
+    height: 200vw;
   }
 }
 @media all and (max-width: 500px) {
   .index .first-page {
-    height: 220vw;
+    height: 300vw;
     padding-top: 10vw;
   }
 }
@@ -666,7 +666,7 @@
   .index .first-page .banner-paraBox {
     padding: 6vw 0;
     right: 3vw;
-    top: 45.5729166667vw;
+    top: 35.15625vw;
   }
 }
 @media all and (max-width: 500px) {

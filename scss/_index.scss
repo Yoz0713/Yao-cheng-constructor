@@ -93,11 +93,11 @@
         z-index: 20;
 
         @include tablet() {
-            height: 150vw;
+            height: 200vw;
         }
 
         @include mobile() {
-            height: 220vw;
+            height: 300vw;
             padding-top: 10vw;
         }
 
@@ -127,7 +127,7 @@
             @include tablet() {
                 padding: 6vw 0;
                 right: 3vw;
-                top: pxConvertor2(350);
+                top: pxConvertor2(270);
                 // background: linear-gradient(-45deg, #ffffff13 0%, #ffffffa9 50%, #ffffff13 100%);
                 // background-size: cover;
                 // background-repeat: no-repeat;
